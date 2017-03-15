@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb;
+package com.example.vinayg.tmdb.adapters;
 /**
  * Created by vinay.g on 08-Feb-17.
  */
@@ -6,6 +6,10 @@ package com.example.vinayg.tmdb;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.vinayg.tmdb.fragments.PopularScreenFragment;
+import com.example.vinayg.tmdb.fragments.TabFragment2;
+import com.example.vinayg.tmdb.fragments.TabFragment3;
 
 public class pagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

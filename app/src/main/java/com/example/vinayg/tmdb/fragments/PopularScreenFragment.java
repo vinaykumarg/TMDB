@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb;
+package com.example.vinayg.tmdb.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.vinayg.tmdb.R;
 
 /**
  * Created by vinay.g.

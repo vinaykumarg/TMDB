@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.manasaa.imdb.R;
+import com.example.vinayg.tmdb.R;
+
 
 /**
  * Created by manasa.a on 14-03-2017.
