@@ -9,15 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
-<<<<<<< HEAD
-import com.example.manasaa.imdb.favoritesAdapter.FavoritesAdapter;
-import com.example.vinayg.tmdb.R;
-
-=======
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
->>>>>>> 9ecd4a27b0a55bc721839bbb10bef64bdce3c9b0
+
 
 /**
  *Reference:
