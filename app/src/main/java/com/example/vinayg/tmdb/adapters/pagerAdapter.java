@@ -7,9 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.vinayg.tmdb.fragments.FavoriteFragment;
 import com.example.vinayg.tmdb.fragments.PopularScreenFragment;
 import com.example.vinayg.tmdb.fragments.TabFragment2;
-import com.example.vinayg.tmdb.fragments.TabFragment3;
 
 public class pagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
@@ -30,7 +30,7 @@ public class pagerAdapter extends FragmentStatePagerAdapter {
                 TabFragment2 tab2 = new TabFragment2();
                 return tab2;
             case 2:
-                TabFragment3 tab3 = new TabFragment3();
+                FavoriteFragment tab3 = new FavoriteFragment();
                 return tab3;
             default:
                 return null;
