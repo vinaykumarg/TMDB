@@ -13,7 +13,6 @@ import com.example.vinayg.tmdb.fragments.TabFragment2;
 
 public class pagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
-
     public pagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;

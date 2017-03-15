@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,8 @@ public class FavoriteFragment extends Fragment {
                 "Barracuda", "Bear", "Beaver", "Bee"
         };
 
-        RecyclerView.LayoutManager mLayoutManager =new GridLayoutManager(mContext,2);
+        RecyclerView.LayoutManager mLayoutManager =new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                                                      // GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new FavoritesAdapter(mContext,animals);  // Initialize a new instance of RecyclerView Adapter instance
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
