@@ -12,7 +12,15 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content"/>
+=======
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    </android.support.design.widget.AppBarLayout>
+
+>>>>>>> 0b17ec3ecc71f80e76d5214505f25a3fc716298e
 
     </android.support.design.widget.AppBarLayout>
 

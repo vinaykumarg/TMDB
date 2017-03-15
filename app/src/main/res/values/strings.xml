@@ -2,4 +2,9 @@
     <string name="app_name">TMDB</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="apikey">319c8b0a85df06be0efd3e28b435c932</string>
+    <string name="en">EN</string>
+    <string name="_5000_votes">5000 votes</string>
+    <string name="_50">50%</string>
+    <string name="like">like</string>
 </resources>
