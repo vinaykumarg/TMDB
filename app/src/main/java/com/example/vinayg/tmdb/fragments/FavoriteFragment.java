@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.example.manasaa.imdb.favoritesAdapter.FavoritesAdapter;
-
+import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
 
 /**
  *Reference:

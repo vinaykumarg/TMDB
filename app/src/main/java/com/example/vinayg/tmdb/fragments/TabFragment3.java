@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb;
+package com.example.vinayg.tmdb.fragments;
 
 import android.support.v4.app.Fragment;
 
