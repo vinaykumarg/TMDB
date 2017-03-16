@@ -6,11 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import com.example.vinayg.tmdb.models.Movie;
-
 import java.util.ArrayList;
-
 import static com.example.vinayg.tmdb.database.MovieDBSchema.*;
 /**
  * Created by manasa.a on 15-03-2017.

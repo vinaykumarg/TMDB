@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         movie_filter = new String[]{"popular","top_rated","favourite"};
         tabLayout.addTab(tabLayout.newTab().setText(movie_filter[0].toUpperCase()));
