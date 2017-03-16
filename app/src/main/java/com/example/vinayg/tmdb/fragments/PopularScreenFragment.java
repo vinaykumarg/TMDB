@@ -15,16 +15,7 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
-
-
-import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
-//import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
-
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
-
-
-import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
-
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
@@ -45,7 +36,6 @@ public class PopularScreenFragment extends Fragment {
     private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
     ArrayList<Movie> data;
-    private PopularVIewAdapter gridAdapter;
     private RecyclerView mRecyclerView;
 
     @Override
@@ -94,7 +84,7 @@ public class PopularScreenFragment extends Fragment {
             HttpHandler sh = new HttpHandler();
             data = new ArrayList<>();
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url.toString());
+            String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
             Log.d(TAG,jsonStr + " called ");
             if (jsonStr != null) {
 
@@ -109,7 +99,7 @@ public class PopularScreenFragment extends Fragment {
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
                         movie.setOverview(movieDetails.getString("overview"));
-                        movie.setAverageRating(movieDetails.getString("vote_average"));
+                        movie.setAverageRating("Average rating : "+movieDetails.getString("vote_average"));
                         movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         data.add(movie);
@@ -138,9 +128,8 @@ public class PopularScreenFragment extends Fragment {
                         .appendQueryParameter(query,language)
                         .appendQueryParameter(page,"1")
                         .build();
-                URL url = new URL(builtUri.toString());
-//                Log.e("url", builtUri.toString());
-                return url;
+                //                Log.e("url", builtUri.toString());
+                return new URL(builtUri.toString());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return null;
@@ -150,7 +139,7 @@ public class PopularScreenFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
+            PopularVIewAdapter gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
             mRecyclerView.setAdapter(gridAdapter);
         }
     }

@@ -1,7 +1,6 @@
 package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,20 +38,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         mContext = context;
     }
 
-<<<<<<< HEAD
-    public FavoritesAdapter(Context context) {
-    }
-
-
-
-
-=======
-    public FavoritesAdapter(Context context){
-
-    }
-
-
->>>>>>> fb5c32fee201a3300fbd85853cfb02107ee35cbf
     public void updateData(ArrayList<Movie> DataSet){
         mData = DataSet;
         notifyDataSetChanged();
