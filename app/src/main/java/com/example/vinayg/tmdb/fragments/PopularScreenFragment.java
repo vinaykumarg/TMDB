@@ -31,6 +31,7 @@ import java.util.ArrayList;
  * Created by vinay.g.
  */
 public class PopularScreenFragment extends Fragment {
+    private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
     ArrayList<Movie> data;
     private PopularVIewAdapter gridAdapter;
@@ -70,7 +71,9 @@ public class PopularScreenFragment extends Fragment {
             data = new ArrayList<>();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url.toString());
+            Log.d(TAG,jsonStr + " called ");
             if (jsonStr != null) {
+
 
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);

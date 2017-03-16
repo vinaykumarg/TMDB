@@ -5,9 +5,32 @@ package com.example.vinayg.tmdb.models;
  */
 
 public class Movie {
-    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview;
+    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview,category;
     private long movieId;
     private Boolean isSaved = false;
+    private int isFavorite;
+    private int id;
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+
+
     public String getRelease_date() {
         return Release_date;
     }
@@ -70,5 +93,12 @@ public class Movie {
 
     public void setSaved(Boolean saved) {
         isSaved = saved;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }
