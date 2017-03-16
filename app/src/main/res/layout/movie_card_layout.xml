@@ -25,6 +25,7 @@
                 tools:src="@drawable/madmax" />
 
             <TextView
+
                 android:id="@+id/tvLanguage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"

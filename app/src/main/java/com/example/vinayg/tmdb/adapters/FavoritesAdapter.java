@@ -40,7 +40,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     public FavoritesAdapter(Context context){
 
     }
-    
+
 
     public void updateData(ArrayList<Movie> DataSet){
         mData = DataSet;
