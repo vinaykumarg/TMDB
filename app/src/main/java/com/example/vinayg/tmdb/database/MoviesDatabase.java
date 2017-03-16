@@ -62,6 +62,10 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         values.put(MoviesTable.Cols.MOVIE_NAME, movie.getTitle());
         values.put(MoviesTable.Cols.MOVIE_IMAGE_URL, movie.getImageUrl());
         values.put(MoviesTable.Cols.IS_FAVORITE, movie.getIsFavorite());
+        values.put(MoviesTable.Cols.MOVIE_ID,movie.getMovieId());
+        values.put(MoviesTable.Cols.BACKGROUND_IMG,movie.getBackgroundImage());
+        values.put(MoviesTable.Cols.OVERVIEW,movie.getOverview());
+        values.put(MoviesTable.Cols.AVG_RATING,movie.getAverageRating());
         return values;
     }
 }
