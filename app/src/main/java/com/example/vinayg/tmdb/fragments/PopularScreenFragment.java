@@ -1,5 +1,6 @@
 package com.example.vinayg.tmdb.fragments;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,8 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.listeners.ClickListener;
+import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
 import com.example.vinayg.tmdb.models.Movie;
 
 import org.json.JSONArray;
@@ -39,6 +44,22 @@ public class PopularScreenFragment extends Fragment {
         movie_filter = new String[]{"popular","top_rated","favourite"};
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         new FetchMovieData().execute();
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
+                likeBtn.setBackgroundResource(R.drawable.like);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra("position",position);
+                startActivity(intent);
+            }
+
+        }));
         return view;
     }
     private class FetchMovieData extends AsyncTask<Void, Void, String> {

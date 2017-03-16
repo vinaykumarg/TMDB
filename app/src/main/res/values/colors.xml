@@ -13,4 +13,5 @@
     <color name="half_black">#808080</color>
     <color name="light_grey">#EBEBF1</color>
     <color name="semi_transparent">#99000000</color>
+    <color name="titleColor">#31cfcd</color>
 </resources>

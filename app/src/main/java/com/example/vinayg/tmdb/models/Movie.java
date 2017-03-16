@@ -5,7 +5,10 @@ package com.example.vinayg.tmdb.models;
  */
 
 public class Movie {
-
+    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview,category;
+    private long movieId;
+    private Boolean isSaved = false;
+    private int isFavorite;
     private int id;
 
     public int getIsFavorite() {
@@ -16,8 +19,7 @@ public class Movie {
         this.isFavorite = isFavorite;
     }
 
-    private int isFavorite;
-    private String title,ImageUrl,Release_date;
+
 
     public String getCategory() {
         return category;
@@ -27,7 +29,7 @@ public class Movie {
         this.category = category;
     }
 
-    private String category;
+
 
     public String getRelease_date() {
         return Release_date;
@@ -52,11 +54,51 @@ public class Movie {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getBackgroundImage() {
+        return BackgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        BackgroundImage = backgroundImage;
+    }
+
+    public String getAverageRating() {
+        return AverageRating;
+    }
+
+    public void setAverageRating(String averageRating) {
+        AverageRating = averageRating;
+    }
+
+    public String getOverview() {
+        return Overview;
+    }
+
+    public void setOverview(String overview) {
+        Overview = overview;
+    }
+
+    public long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(long movieId) {
+        this.movieId = movieId;
+    }
+
+    public Boolean isSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(Boolean saved) {
+        isSaved = saved;
+    }
+
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
-
 }

@@ -9,6 +9,7 @@
                                     card_view:cardCornerRadius="4dp">
 
     <LinearLayout
+        android:id="@+id/movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -109,14 +110,13 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnBook"
+                android:id="@+id/btnLike"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:layout_weight="2"
-                android:background="@android:color/holo_red_dark"
-                android:text="@string/like"
+                android:background="@drawable/likegrey"
                 android:textColor="@color/white" />
 
         </LinearLayout>

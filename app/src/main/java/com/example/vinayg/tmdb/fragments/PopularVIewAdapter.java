@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 
 public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.ViewHolder>{
-    private Context context;
+    public static Context context;
     private int layoutResourceId;
     private ArrayList<Movie> data;
 
@@ -29,7 +29,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         this.context = context;
         this.data = data;
     }
-    
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
