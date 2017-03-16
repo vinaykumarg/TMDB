@@ -5,14 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.vinayg.tmdb.models.Movie;
+
+import java.util.ArrayList;
 
 import static com.example.vinayg.tmdb.database.MovieDBSchema.*;
 /**
  * Created by manasa.a on 15-03-2017.
  */
 public class MoviesDatabase extends SQLiteOpenHelper {
+    private static final String TAG = MoviesDatabase.class.getSimpleName();
     private SQLiteDatabase db;
     private static MoviesDatabase instance;
     private static final int VERSION = 1;
@@ -51,11 +55,33 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         ContentValues values = getContentValues(movie);
         db .insert(MoviesTable.NAME, null, values);
     }
-    public void getUserFavoriteMovies(){
+    public  ArrayList<Movie> getUserFavoriteMovies(){
        db= this.getReadableDatabase();
+        ArrayList<Movie> favMovieList;
         Cursor cursor =  db.rawQuery("select * from " + MoviesTable.NAME + " where " +MoviesTable.Cols.IS_FAVORITE + "='" + 1 , null);
-
+        favMovieList = getFavMoviesList(cursor);
+        cursor.close();
+        return favMovieList;
     }
+
+    private ArrayList<Movie> getFavMoviesList(Cursor cursor) {
+        ArrayList<Movie> favMovieList = new ArrayList<>();
+        if (cursor != null) { Log.d(TAG, "called cursor!null");
+            if (cursor.moveToFirst()) {
+                do {Log.d(TAG, "called (cursor.moveToFirst())");
+                    Movie movie = new Movie();
+                    movie.setMovieId(cursor.getInt(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_ID)));
+                    movie.setTitle(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_NAME)));
+                    movie.setImageUrl(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_IMAGE_URL)));
+                    movie.setIsFavorite(cursor.getInt(cursor.getColumnIndex(MoviesTable.Cols.IS_FAVORITE)));
+                    favMovieList.add(movie);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        return favMovieList;
+    }
+
     private static ContentValues getContentValues(Movie movie) {
         ContentValues values = new ContentValues();
         values.put(MoviesTable.Cols.ID, movie.getId());
