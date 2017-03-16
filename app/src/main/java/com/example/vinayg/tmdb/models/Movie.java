@@ -7,7 +7,7 @@ package com.example.vinayg.tmdb.models;
 public class Movie {
     private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview;
     private long movieId;
-
+    private Boolean isSaved = false;
     public String getRelease_date() {
         return Release_date;
     }
@@ -62,5 +62,13 @@ public class Movie {
 
     public void setMovieId(long movieId) {
         this.movieId = movieId;
+    }
+
+    public Boolean isSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(Boolean saved) {
+        isSaved = saved;
     }
 }
