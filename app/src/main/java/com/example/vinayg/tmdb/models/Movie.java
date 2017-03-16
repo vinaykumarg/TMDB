@@ -5,7 +5,8 @@ package com.example.vinayg.tmdb.models;
  */
 
 public class Movie {
-    private String title,ImageUrl,Release_date;
+    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview;
+    private long movieId;
 
     public String getRelease_date() {
         return Release_date;
@@ -29,5 +30,37 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getBackgroundImage() {
+        return BackgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        BackgroundImage = backgroundImage;
+    }
+
+    public String getAverageRating() {
+        return AverageRating;
+    }
+
+    public void setAverageRating(String averageRating) {
+        AverageRating = averageRating;
+    }
+
+    public String getOverview() {
+        return Overview;
+    }
+
+    public void setOverview(String overview) {
+        Overview = overview;
+    }
+
+    public long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(long movieId) {
+        this.movieId = movieId;
     }
 }
