@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb.fragments;
+package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

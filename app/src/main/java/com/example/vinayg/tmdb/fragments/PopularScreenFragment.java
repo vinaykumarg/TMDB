@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
 import com.example.vinayg.tmdb.models.Movie;
@@ -50,12 +51,14 @@ public class PopularScreenFragment extends Fragment {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 likeBtn.setBackgroundResource(R.drawable.like);
 
+
             }
 
             @Override
             public void onLongClick(View view, int position) {
                 Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
                 intent.putExtra("position",position);
+                intent.putExtra("movie",data.get(position));
                 startActivity(intent);
             }
 
@@ -83,7 +86,9 @@ public class PopularScreenFragment extends Fragment {
                         Movie movie = new Movie();
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
-                        Log.d("movie",movieDetails.toString());
+                        movie.setOverview(movieDetails.getString("overview"));
+                        movie.setAverageRating(movieDetails.getString("vote_average"));
+                        movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         data.add(movie);
                     }

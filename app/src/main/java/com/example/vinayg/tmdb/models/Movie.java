@@ -1,10 +1,12 @@
 package com.example.vinayg.tmdb.models;
 
+import java.io.Serializable;
+
 /**
  * Created by vinay.g.
  */
 
-public class Movie {
+public class Movie implements Serializable {
     private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview,category;
     private long movieId;
     private Boolean isSaved = false;

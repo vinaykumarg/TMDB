@@ -4,7 +4,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,14 +13,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <FrameLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView1"
-                android:background="@drawable/video"/>
+                android:layout_marginBottom="@dimen/bottomline">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:src="@drawable/video"/>
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mytoolbar"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            </FrameLayout>
             <LinearLayout
                 android:orientation="horizontal"
+                android:background="@color/bright"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/bottomline">
 
                 <ImageView
                     android:layout_width="180dp"
@@ -38,15 +49,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:id="@+id/title"
                         android:text="MadMax"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/releasedate"
                         android:text="2017-03-08"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Average rating:6.5"
+                        android:id="@+id/rating"
+                        android:text="Average rating : 6.5"
                         />
 
                 </LinearLayout>
@@ -54,10 +69,13 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin">
+                android:background="@color/bright"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/bottomline">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/summary"
                     android:text="@string/details"
                     />
             </FrameLayout>
