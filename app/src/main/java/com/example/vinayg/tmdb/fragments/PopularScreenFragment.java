@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.listeners.ClickListener;
@@ -56,6 +57,9 @@ public class PopularScreenFragment extends Fragment {
                     MoviesDatabase database = MoviesDatabase.getInstance(getContext());
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
+                    ArrayList<Movie> list = database.getUserFavoriteMovies();
+
+
 
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);

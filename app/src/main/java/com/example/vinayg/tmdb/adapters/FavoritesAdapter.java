@@ -1,17 +1,22 @@
 package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.models.Movie;
 
 import java.util.ArrayList;
+
+import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
 
 /**
@@ -22,19 +27,33 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     private Context mContext;
     private ArrayList<Movie> mData;
 
-    public FavoritesAdapter(Context context, String[] DataSet){
-        mDataSet = DataSet;
+    public FavoritesAdapter(){
+
+    }
+
+    public FavoritesAdapter(Context context, ArrayList<Movie> DataSet){
+        mData = DataSet;
         mContext = context;
+    }
+
+    public FavoritesAdapter(Context context){
+        mContext = context;
+    }
+
+    public void updateData(ArrayList<Movie> DataSet){
+        mData = DataSet;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
+        public ImageView mImageView;
         public LinearLayout mLinearLayout;
         public ViewHolder(View v){
             super(v);
             mTextView = (TextView) v.findViewById(R.id.tv);
+            mImageView =(ImageView) v.findViewById(R.id.imageViewFav);
             mLinearLayout = (LinearLayout) v.findViewById(R.id.ll);
-
         }
     }
 
@@ -48,11 +67,13 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
     @Override
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet[position]);
+        holder.mTextView.setText(mData.get(position).getTitle());
+        Glide.with(context).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
+                .into(holder.mImageView);
     }
 
     @Override
     public int getItemCount() {
-        return  mDataSet.length;
+        return  mData.size();
     }
 }
