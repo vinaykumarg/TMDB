@@ -50,6 +50,7 @@ public class PopularScreenFragment extends Fragment {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 likeBtn.setBackgroundResource(R.drawable.like);
 
+
             }
 
             @Override
