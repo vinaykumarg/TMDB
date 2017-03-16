@@ -1,6 +1,7 @@
 package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
 
 
@@ -24,15 +26,27 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         mContext = context;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
+
         public TextView mTextView;
         public LinearLayout mLinearLayout;
         public ViewHolder(View v){
             super(v);
             mTextView = (TextView) v.findViewById(R.id.tv);
             mLinearLayout = (LinearLayout) v.findViewById(R.id.ll);
+            v.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent =  new Intent(v.getContext(), MovieDetailsActivity.class);
+            intent.putExtra("position",getAdapterPosition());
+            v.getContext().startActivity(intent);
+
         }
     }
+
 
 
     @Override

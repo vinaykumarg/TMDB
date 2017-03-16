@@ -1,9 +1,7 @@
 package com.example.vinayg.tmdb.database;
-
 /**
  * Created by manasa.a on 15-03-2017.
  */
-
 public class MovieDBSchema {
     public static final class MoviesTable{
         public static final  String NAME ="movies";
@@ -19,9 +17,6 @@ public class MovieDBSchema {
             public static final String AVG_RATING = "avgrating";
             public static final String OVERVIEW = "overview";
             public static final String CATEGORY ="category";
-
         }
-
     }
-
 }
