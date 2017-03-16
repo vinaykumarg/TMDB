@@ -60,6 +60,7 @@ public class FavoriteFragment extends Fragment {
         // GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new FavoritesAdapter(mContext,animals);  // Initialize a new instance of RecyclerView Adapter instance
+        //RecyclerView.Adapter mAdapter = new FavoritesAdapter(mContext,favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override

@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.models.Movie;
+
+import java.util.ArrayList;
 
 
 /**
@@ -16,8 +19,8 @@ import com.example.vinayg.tmdb.R;
  */
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
-    private String[] mDataSet;
     private Context mContext;
+    private ArrayList<Movie> mData;
 
     public FavoritesAdapter(Context context, String[] DataSet){
         mDataSet = DataSet;
