@@ -45,11 +45,11 @@ public class FavoriteFragment extends Fragment {
         mContext =  getActivity().getApplicationContext();
         MoviesDatabase db = MoviesDatabase.getInstance(getContext());
         favMoviesList =db.getUserFavoriteMovies();
-        if(favMoviesList.size()==0){
-            Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
-        }else {
+//        if(favMoviesList.size()==0){
+//            Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
+//        }else {
             setRecyclerView();
-        }
+        //}
         return mV;
     }
 
@@ -61,20 +61,20 @@ public class FavoriteFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new FavoritesAdapter(mContext,animals);  // Initialize a new instance of RecyclerView Adapter instance
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
-//        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
-//            @Override
-//            public void onClick(View view, int position) {
-//                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
-//                intent.putExtra("position",position);
-//                startActivity(intent);
-//
-//            }
-//            @Override
-//            public void onLongClick(View view, int position) {
-//
-//            }
-//
-//        }));
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra("position",position);
+                startActivity(intent);
+
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+
+        }));
 
     }
 }
