@@ -51,15 +51,16 @@ public class PopularScreenFragment extends Fragment {
             public void onClick(View view, int position) {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 Movie movie = data.get(position);
-                if(movie.getIsFavorite()==0) {
+                MoviesDatabase database = MoviesDatabase.getInstance(getContext());
+                if(!database.checkIfsaved(movie)) {
                     likeBtn.setBackgroundResource(R.drawable.like);
-                    MoviesDatabase database = MoviesDatabase.getInstance(getContext());
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
 
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
                     movie.setIsFavorite(0);
+                    database.deleteMovie(movie);
                 }
 
 
@@ -95,6 +96,7 @@ public class PopularScreenFragment extends Fragment {
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
+                        movie.setMovieId(movieDetails.getLong("id"));
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
                         movie.setOverview(movieDetails.getString("overview"));
