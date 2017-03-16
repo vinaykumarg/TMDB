@@ -14,4 +14,5 @@
     <color name="light_grey">#EBEBF1</color>
     <color name="semi_transparent">#99000000</color>
     <color name="titleColor">#31cfcd</color>
+    <color name="bright">#fff</color>
 </resources>

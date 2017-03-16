@@ -15,5 +15,6 @@
     <dimen name="small_margin">5dp</dimen>
     <dimen name="book_btn_h">40dp</dimen>
     <dimen name="viewpager_h">250dp</dimen>
+    <dimen name="bottomline">2dp</dimen>
 
 </resources>
