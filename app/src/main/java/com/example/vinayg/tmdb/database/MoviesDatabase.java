@@ -37,10 +37,9 @@ public class MoviesDatabase extends SQLiteOpenHelper {
                 MoviesTable.Cols.MOVIE_IMAGE_URL + " varchar(500) , " +
                 MoviesTable.Cols.BACKGROUND_IMG + " varchar(500) , "+
                 MoviesTable.Cols.AVG_RATING+ " varchar(20) , "+
-                MoviesTable.Cols.BACKGROUND_IMG +" varchar(100) , " +
                 MoviesTable.Cols.CATEGORY+" varchar(20), " +
                 MoviesTable.Cols.OVERVIEW+" varchar(1000), "+
-                MoviesTable.Cols.IS_FAVORITE + "integer default 0 )"
+                MoviesTable.Cols.IS_FAVORITE + " integer default 0 )"
         );
     }
     @Override
@@ -55,7 +54,7 @@ public class MoviesDatabase extends SQLiteOpenHelper {
     public  ArrayList<Movie> getUserFavoriteMovies(){
        db= this.getReadableDatabase();
         ArrayList<Movie> favMovieList;
-        Cursor cursor =  db.rawQuery("select * from " + MoviesTable.NAME + " where " +MoviesTable.Cols.IS_FAVORITE + "='" + 1 , null);
+        Cursor cursor =  db.rawQuery("select * from " + MoviesTable.NAME + " where " +MoviesTable.Cols.IS_FAVORITE + "=" + 1 , null);
         favMovieList = getFavMoviesList(cursor);
         cursor.close();
         return favMovieList;
