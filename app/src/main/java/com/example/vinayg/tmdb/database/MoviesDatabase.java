@@ -2,6 +2,7 @@ package com.example.vinayg.tmdb.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -31,7 +32,13 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         db.execSQL("create table "+ MoviesTable.NAME +"( "+
                 MoviesTable.Cols.ID +" integer primary key autoincrement, "+
                 MoviesTable.Cols.MOVIE_NAME+ " varchar(50) , " +
-                MoviesTable.Cols.MOVIE_IMAGE_URL + "varchar(500) , " +
+                MoviesTable.Cols.MOVIE_ID+" integer , "+
+                MoviesTable.Cols.MOVIE_IMAGE_URL + " varchar(500) , " +
+                MoviesTable.Cols.BACKGROUND_IMG + " varchar(500) , "+
+                MoviesTable.Cols.AVG_RATING+ " varchar(20) , "+
+                MoviesTable.Cols.BACKGROUND_IMG +" varchar(100) , " +
+                MoviesTable.Cols.CATEGORY+" varchar(20), " +
+                MoviesTable.Cols.OVERVIEW+" varchar(1000), "+
                 MoviesTable.Cols.IS_FAVORITE + "integer default 0 )"
         );
     }
@@ -46,6 +53,7 @@ public class MoviesDatabase extends SQLiteOpenHelper {
     }
     public void getUserFavoriteMovies(){
        db= this.getReadableDatabase();
+        Cursor cursor =  db.rawQuery("select * from " + MoviesTable.NAME + " where " +MoviesTable.Cols.IS_FAVORITE + "='" + 1 , null);
 
     }
     private static ContentValues getContentValues(Movie movie) {
@@ -54,6 +62,10 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         values.put(MoviesTable.Cols.MOVIE_NAME, movie.getTitle());
         values.put(MoviesTable.Cols.MOVIE_IMAGE_URL, movie.getImageUrl());
         values.put(MoviesTable.Cols.IS_FAVORITE, movie.getIsFavorite());
+        values.put(MoviesTable.Cols.MOVIE_ID,movie.getMovieId());
+        values.put(MoviesTable.Cols.BACKGROUND_IMG,movie.getBackgroundImage());
+        values.put(MoviesTable.Cols.OVERVIEW,movie.getOverview());
+        values.put(MoviesTable.Cols.AVG_RATING,movie.getAverageRating());
         return values;
     }
 }
