@@ -1,81 +1,20 @@
 package com.example.vinayg.tmdb.fragments;
 
+import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.vinayg.tmdb.R;
-
-import java.util.ArrayList;
-
-
-//public class TopRatedFragment extends Fragment {
-//    TopRatedAdapter adapter;
-//    RecyclerView recyclerView;
-//    ArrayList<Model> demoData;
-//
-//
-//
-//
-//    public TopRatedFragment() {
-//        // Required empty public constructor
-//    }
-//
-//
-//
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//
-//
-//        return inflater.inflate(R.layout.fragment_top_rated, container, false);
-//    }
-//
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        recyclerView = (RecyclerView) getView().findViewById(R.id.myList);
-//        recyclerView.setHasFixedSize(true);
-//        Context c = getActivity().getApplicationContext();
-//        RecyclerView.LayoutManager llm = new GridLayoutManager(c,2);
-//        //llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(llm);
-//
-//        demoData = new ArrayList<Model>();
-//        //char c = 'A';
-//        for(int i=0;i<20;i++){
-//            Model model = new Model();
-//            model.setName("name: "+i);
-//            model.setAge(i);
-//            demoData.add(model);
-//        }
-////        for (byte i = 0; i < 20; i++) {
-////            Model model = new Model();
-////            model.setName("c++");
-////            model.setAge(i);
-////            //model.age = (byte) (20 + i);
-////            demoData.add(model);
-////        }
-//        adapter = new TopRatedAdapter(demoData);
-//        recyclerView.setAdapter(adapter);
-//    }
-//}
-
-
-
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
+import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
@@ -87,10 +26,9 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
-/**
- * Created by vinay.g.
- */
+
 public class TopRatedFragment extends Fragment {
     private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
@@ -110,15 +48,19 @@ public class TopRatedFragment extends Fragment {
             public void onClick(View view, int position) {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 Movie movie = data.get(position);
-                if(movie.getIsFavorite()==0) {
+                MoviesDatabase database = MoviesDatabase.getInstance(getContext());
+                if(!database.checkIfsaved(movie)) {
                     likeBtn.setBackgroundResource(R.drawable.like);
-                    MoviesDatabase database = MoviesDatabase.getInstance(getContext());
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
+                    ArrayList<Movie> list = database.getUserFavoriteMovies();
+
+
 
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
                     movie.setIsFavorite(0);
+                    database.deleteMovie(movie);
                 }
 
 
@@ -156,9 +98,13 @@ public class TopRatedFragment extends Fragment {
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
+                        Log.d("movie",movieDetails.toString());
+                        movie.setMovieId(movieDetails.getLong("id"));
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
-                        Log.d("movie",movieDetails.toString());
+                        movie.setOverview(movieDetails.getString("overview"));
+                        //movie.setAverageRating(movieDetails.getString("vote_average"));
+                        movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         data.add(movie);
                     }

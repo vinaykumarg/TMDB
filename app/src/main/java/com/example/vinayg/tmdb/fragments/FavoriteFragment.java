@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
@@ -33,7 +32,10 @@ public class FavoriteFragment extends Fragment {
     Context mContext;
     View mV;
     ArrayList<Movie> favMoviesList;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c0c063fc2c28a96585027381f081b1d87cb79883
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class FavoriteFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) mV.findViewById(R.id.recyclerViewFavorites);
         RecyclerView.LayoutManager mLayoutManager =new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        mRecyclerView.setAdapter(mAdapter);
         mAdapter = new FavoritesAdapter(mContext,favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
 
@@ -77,6 +79,13 @@ public class FavoriteFragment extends Fragment {
 
             }
         }));
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "called onAttach");
     }
 
     @Override

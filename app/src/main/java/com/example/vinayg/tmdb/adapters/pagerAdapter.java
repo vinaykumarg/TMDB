@@ -11,7 +11,6 @@ import android.util.Log;
 
 import com.example.vinayg.tmdb.fragments.FavoriteFragment;
 import com.example.vinayg.tmdb.fragments.PopularScreenFragment;
-import com.example.vinayg.tmdb.fragments.TabFragment2;
 import com.example.vinayg.tmdb.fragments.TopRatedFragment;
 
 public class pagerAdapter extends FragmentStatePagerAdapter {
