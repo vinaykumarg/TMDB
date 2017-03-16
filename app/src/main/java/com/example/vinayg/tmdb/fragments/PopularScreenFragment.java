@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
-import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
+import com.example.vinayg.tmdb.adapters.PopularViewAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
@@ -36,7 +36,7 @@ public class PopularScreenFragment extends Fragment {
     private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
     ArrayList<Movie> data;
-    private PopularVIewAdapter gridAdapter;
+    private PopularViewAdapter gridAdapter;
     private RecyclerView mRecyclerView;
 
     @Override
@@ -51,15 +51,16 @@ public class PopularScreenFragment extends Fragment {
             public void onClick(View view, int position) {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 Movie movie = data.get(position);
-                if(movie.getIsFavorite()==0) {
+                MoviesDatabase database = MoviesDatabase.getInstance(getContext());
+                if(!database.checkIfsaved(movie)) {
                     likeBtn.setBackgroundResource(R.drawable.like);
-                    MoviesDatabase database = MoviesDatabase.getInstance(getContext());
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
 
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
                     movie.setIsFavorite(0);
+                    database.deleteMovie(movie);
                 }
 
 
@@ -85,7 +86,6 @@ public class PopularScreenFragment extends Fragment {
             data = new ArrayList<>();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url.toString());
-            Log.d(TAG,jsonStr + " called ");
             if (jsonStr != null) {
 
 
@@ -95,6 +95,8 @@ public class PopularScreenFragment extends Fragment {
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
+                        Log.d("movie",movieDetails.toString());
+                        movie.setMovieId(movieDetails.getLong("id"));
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
                         movie.setOverview(movieDetails.getString("overview"));
@@ -139,7 +141,7 @@ public class PopularScreenFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
+            gridAdapter = new PopularViewAdapter(getContext(), R.layout.movie_card_layout, data);
             mRecyclerView.setAdapter(gridAdapter);
         }
     }

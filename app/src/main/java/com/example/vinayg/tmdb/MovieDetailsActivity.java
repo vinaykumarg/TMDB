@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.vinayg.tmdb.models.Movie;
 
-import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
+import static com.example.vinayg.tmdb.adapters.PopularViewAdapter.context;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 

@@ -22,8 +22,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     private Context mContext;
     private ArrayList<Movie> mData;
 
-    public FavoritesAdapter(Context context, String[] DataSet){
-        mDataSet = DataSet;
+    public FavoritesAdapter(Context context,  ArrayList<Movie>  DataSet){
+        mData = DataSet;
         mContext = context;
     }
 
@@ -48,11 +48,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
     @Override
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet[position]);
+//        holder.mTextView.setText(mDataSet[position]);
     }
 
     @Override
     public int getItemCount() {
-        return  mDataSet.length;
+        return  mData.size();
     }
 }
