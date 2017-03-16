@@ -27,7 +27,7 @@ public class FavoriteFragment extends Fragment {
     View mV;
     ArrayList<Movie> favMoviesList;
     // Initialize a new String array
-    String[] animals = {
+    String[] animals = new String[]{
             "Aardvark", "Albatross", "Alligator", "Alpaca", "Ant", "Anteater", "Antelope", "Ape", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee"
     };
 
