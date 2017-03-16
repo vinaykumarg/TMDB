@@ -5,7 +5,19 @@ package com.example.vinayg.tmdb.models;
  */
 
 public class Movie {
+
+    private int id;
     private String title,ImageUrl,Release_date;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    private String category;
 
     public String getRelease_date() {
         return Release_date;
@@ -30,4 +42,11 @@ public class Movie {
     public void setTitle(String title) {
         this.title = title;
     }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
