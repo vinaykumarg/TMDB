@@ -56,8 +56,6 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         Glide
                 .with(context)
                 .load(movie.getImageUrl())
-                .crossFade()
-                .fitCenter()
                 .into(image);
         imageTitle.setText(movie.getTitle());
         release_date.setText(movie.getRelease_date());
@@ -85,5 +83,4 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         }
     }
 }
-
 

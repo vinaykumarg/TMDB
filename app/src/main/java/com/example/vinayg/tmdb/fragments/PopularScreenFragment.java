@@ -16,8 +16,12 @@ import android.widget.Button;
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
 
+
 import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
 //import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
+
+import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
+
 
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 
@@ -61,9 +65,6 @@ public class PopularScreenFragment extends Fragment {
                     likeBtn.setBackgroundResource(R.drawable.like);
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
-                    ArrayList<Movie> list = database.getUserFavoriteMovies();
-
-
 
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
@@ -94,6 +95,7 @@ public class PopularScreenFragment extends Fragment {
             data = new ArrayList<>();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url.toString());
+            Log.d(TAG,jsonStr + " called ");
             if (jsonStr != null) {
 
 
@@ -103,7 +105,6 @@ public class PopularScreenFragment extends Fragment {
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
-                        Log.d("movie",movieDetails.toString());
                         movie.setMovieId(movieDetails.getLong("id"));
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
