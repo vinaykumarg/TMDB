@@ -2,6 +2,7 @@ package com.example.vinayg.tmdb.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -46,6 +47,7 @@ public class MoviesDatabase extends SQLiteOpenHelper {
     }
     public void getUserFavoriteMovies(){
        db= this.getReadableDatabase();
+        Cursor cursor =  db.rawQuery("select * from " + MoviesTable.NAME + " where " +MoviesTable.Cols.IS_FAVORITE + "='" + 1 , null);
 
     }
     private static ContentValues getContentValues(Movie movie) {
