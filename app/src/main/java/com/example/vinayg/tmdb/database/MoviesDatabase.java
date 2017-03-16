@@ -12,6 +12,7 @@ import static com.example.vinayg.tmdb.database.MovieDBSchema.*;
  * Created by manasa.a on 15-03-2017.
  */
 public class MoviesDatabase extends SQLiteOpenHelper {
+    private SQLiteDatabase db;
     private static MoviesDatabase instance;
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "moviesdatabase.db";
@@ -39,14 +40,20 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MoviesTable.NAME);
     }
     public void insertMovie(Movie movie){
+        db = this.getWritableDatabase();
+        ContentValues values = getContentValues(movie);
+        db .insert(MoviesTable.NAME, null, values);
+    }
+    public void getUserFavoriteMovies(){
+       db= this.getReadableDatabase();
 
     }
     private static ContentValues getContentValues(Movie movie) {
         ContentValues values = new ContentValues();
         values.put(MoviesTable.Cols.ID, movie.getId());
         values.put(MoviesTable.Cols.MOVIE_NAME, movie.getTitle());
-        values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
-        values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+        values.put(MoviesTable.Cols.MOVIE_IMAGE_URL, movie.getImageUrl());
+        values.put(MoviesTable.Cols.IS_FAVORITE, movie.getIsFavorite());
         return values;
     }
 }

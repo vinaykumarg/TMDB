@@ -7,6 +7,16 @@ package com.example.vinayg.tmdb.models;
 public class Movie {
 
     private int id;
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+    private int isFavorite;
     private String title,ImageUrl,Release_date;
 
     public String getCategory() {
