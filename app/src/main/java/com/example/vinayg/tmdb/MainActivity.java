@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.vinayg.tmdb.adapters.pagerAdapter;
 import com.example.vinayg.tmdb.reicievers.MyReceiver;
@@ -80,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void unregisterReciever() {
         try {
-            Toast.makeText(this,"unregistered",Toast.LENGTH_SHORT).show();
             unregisterReceiver(mMyReceiver);
         } catch (Exception e) {
-            Toast.makeText(this,"Already unregistered",Toast.LENGTH_SHORT).show();
+
         }
 
     }

@@ -33,6 +33,13 @@ public class FavoriteFragment extends Fragment {
     Context mContext;
     View mV;
     ArrayList<Movie> favMoviesList;
+<<<<<<< HEAD
+=======
+    // Initialize a new String array
+    String[] animals = new String[]{
+            "Aardvark", "Albatross", "Alligator", "Alpaca", "Ant", "Anteater", "Antelope", "Ape", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee"
+    };
+>>>>>>> 9a82592a1a21e50c1b545c7f7d8479e9b66ba25e
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
