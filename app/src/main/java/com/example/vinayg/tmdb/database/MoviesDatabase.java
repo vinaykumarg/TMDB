@@ -51,6 +51,12 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         ContentValues values = getContentValues(movie);
         db .insert(MoviesTable.NAME, null, values);
     }
+    public void deleteMovie(Movie value)
+    {
+        db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + MoviesTable.NAME + " WHERE "+MoviesTable.Cols.MOVIE_ID+"='"+value.getMovieId()+"'");
+        db.close();
+    }
     public  ArrayList<Movie> getUserFavoriteMovies(){
        db= this.getReadableDatabase();
         ArrayList<Movie> favMovieList;
