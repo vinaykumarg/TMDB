@@ -32,7 +32,12 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         db.execSQL("create table "+ MoviesTable.NAME +"( "+
                 MoviesTable.Cols.ID +" integer primary key autoincrement, "+
                 MoviesTable.Cols.MOVIE_NAME+ " varchar(50) , " +
-                MoviesTable.Cols.MOVIE_IMAGE_URL + "varchar(500) , " +
+                MoviesTable.Cols.MOVIE_IMAGE_URL + " varchar(500) , " +
+                MoviesTable.Cols.BACKGROUND_IMG + " varchar(500) , "+
+                MoviesTable.Cols.AVG_RATING+ " varchar(20) , "+
+                MoviesTable.Cols.BACKGROUND_IMG +" varchar(100) , " +
+                MoviesTable.Cols.CATEGORY+" varchar(20), " +
+                MoviesTable.Cols.OVERVIEW+" varchar(1000), "+
                 MoviesTable.Cols.IS_FAVORITE + "integer default 0 )"
         );
     }
