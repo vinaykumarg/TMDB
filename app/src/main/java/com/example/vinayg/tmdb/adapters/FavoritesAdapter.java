@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
+//import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
+
 
 /**
  * Created by manasa.a on 14-03-2017.
@@ -27,7 +29,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     private Context mContext;
     private ArrayList<Movie> mData;
 
-<<<<<<< HEAD
+
     public FavoritesAdapter(){
 
     }
@@ -37,13 +39,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         mContext = context;
     }
 
-    public FavoritesAdapter(Context context){
-=======
-    public FavoritesAdapter(Context context,  ArrayList<Movie>  DataSet){
-        mData = DataSet;
->>>>>>> ab24c7e4cc1a8c1e6c178befea3adffbd2b09b70
-        mContext = context;
+    public FavoritesAdapter(Context context) {
     }
+
+
+
 
     public void updateData(ArrayList<Movie> DataSet){
         mData = DataSet;
@@ -72,13 +72,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
     @Override
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
-<<<<<<< HEAD
+
         holder.mTextView.setText(mData.get(position).getTitle());
         Glide.with(context).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
                 .into(holder.mImageView);
-=======
-//        holder.mTextView.setText(mDataSet[position]);
->>>>>>> ab24c7e4cc1a8c1e6c178befea3adffbd2b09b70
+
     }
 
     @Override

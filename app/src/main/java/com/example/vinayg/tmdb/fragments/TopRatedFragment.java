@@ -110,15 +110,19 @@ public class TopRatedFragment extends Fragment {
             public void onClick(View view, int position) {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 Movie movie = data.get(position);
-                if(movie.getIsFavorite()==0) {
+                MoviesDatabase database = MoviesDatabase.getInstance(getContext());
+                if(!database.checkIfsaved(movie)) {
                     likeBtn.setBackgroundResource(R.drawable.like);
-                    MoviesDatabase database = MoviesDatabase.getInstance(getContext());
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
+                    ArrayList<Movie> list = database.getUserFavoriteMovies();
+
+
 
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
                     movie.setIsFavorite(0);
+                    database.deleteMovie(movie);
                 }
 
 
@@ -156,9 +160,13 @@ public class TopRatedFragment extends Fragment {
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
+                        Log.d("movie",movieDetails.toString());
+                        movie.setMovieId(movieDetails.getLong("id"));
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
-                        Log.d("movie",movieDetails.toString());
+                        movie.setOverview(movieDetails.getString("overview"));
+                        //movie.setAverageRating(movieDetails.getString("vote_average"));
+                        movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         data.add(movie);
                     }

@@ -15,12 +15,12 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
-<<<<<<< HEAD
+
 import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
+//import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
+
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
-=======
-import com.example.vinayg.tmdb.adapters.PopularViewAdapter;
->>>>>>> ab24c7e4cc1a8c1e6c178befea3adffbd2b09b70
+
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
@@ -41,7 +41,7 @@ public class PopularScreenFragment extends Fragment {
     private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
     ArrayList<Movie> data;
-    private PopularViewAdapter gridAdapter;
+    private PopularVIewAdapter gridAdapter;
     private RecyclerView mRecyclerView;
 
     @Override
@@ -149,7 +149,7 @@ public class PopularScreenFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            gridAdapter = new PopularViewAdapter(getContext(), R.layout.movie_card_layout, data);
+            gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
             mRecyclerView.setAdapter(gridAdapter);
         }
     }

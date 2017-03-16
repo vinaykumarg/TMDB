@@ -21,12 +21,12 @@ import java.util.ArrayList;
  * Created by vinay.g.
  */
 
-public class PopularViewAdapter extends RecyclerView.Adapter<PopularViewAdapter.ViewHolder>{
+public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.ViewHolder>{
     public static Context context;
     private int layoutResourceId;
     private ArrayList<Movie> data;
 
-    public PopularViewAdapter(Context context, int layoutResourceId, ArrayList<Movie> data) {
+    public PopularVIewAdapter(Context context, int layoutResourceId, ArrayList<Movie> data) {
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
