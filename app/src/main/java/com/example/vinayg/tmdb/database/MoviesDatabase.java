@@ -6,9 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import com.example.vinayg.tmdb.models.Movie;
+
 import java.util.ArrayList;
-import static com.example.vinayg.tmdb.database.MovieDBSchema.*;
+
+import static com.example.vinayg.tmdb.database.MovieDBSchema.MoviesTable;
 /**
  * Created by manasa.a on 15-03-2017.
  */
@@ -86,7 +89,6 @@ public class MoviesDatabase extends SQLiteOpenHelper {
 
     private static ContentValues getContentValues(Movie movie) {
         ContentValues values = new ContentValues();
-        values.put(MoviesTable.Cols.ID, movie.getId());
         values.put(MoviesTable.Cols.MOVIE_NAME, movie.getTitle());
         values.put(MoviesTable.Cols.MOVIE_IMAGE_URL, movie.getImageUrl());
         values.put(MoviesTable.Cols.IS_FAVORITE, movie.getIsFavorite());
@@ -95,5 +97,16 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         values.put(MoviesTable.Cols.OVERVIEW,movie.getOverview());
         values.put(MoviesTable.Cols.AVG_RATING,movie.getAverageRating());
         return values;
+    }
+    public Boolean checkIfsaved(Movie movie) {
+        db= this.getReadableDatabase();
+        String selection = MoviesTable.Cols.MOVIE_ID + " = ?";
+        String[] selectionArgs = { movie.getMovieId()+"" };
+        Cursor cursor = db.query(MoviesTable.NAME,new String[]{MoviesTable.Cols.IS_FAVORITE} ,
+                selection, selectionArgs, null, null, null);
+        if (cursor.moveToFirst()) {
+            return true;
+        }
+        return false;
     }
 }
