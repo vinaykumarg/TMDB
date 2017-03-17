@@ -79,6 +79,8 @@ public class MoviesDatabase extends SQLiteOpenHelper {
                     movie.setTitle(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_NAME)));
                     movie.setImageUrl(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_IMAGE_URL)));
                     movie.setIsFavorite(cursor.getInt(cursor.getColumnIndex(MoviesTable.Cols.IS_FAVORITE)));
+                    movie.setBackgroundImage(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.BACKGROUND_IMG)));
+                    movie.setOverview(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.OVERVIEW)));
                     favMovieList.add(movie);
                 } while (cursor.moveToNext());
             }

@@ -32,10 +32,7 @@ public class FavoriteFragment extends Fragment {
     Context mContext;
     View mV;
     ArrayList<Movie> favMoviesList;
-<<<<<<< HEAD
 
-=======
->>>>>>> c0c063fc2c28a96585027381f081b1d87cb79883
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,10 +116,5 @@ public class FavoriteFragment extends Fragment {
         Log.d(TAG,"called onAttachFragment ");
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.d(TAG,"called  onAttach ");
 
-    }
 }

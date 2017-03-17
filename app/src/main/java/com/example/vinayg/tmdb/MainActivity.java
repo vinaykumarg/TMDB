@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.vinayg.tmdb.adapters.pagerAdapter;
 import com.example.vinayg.tmdb.reicievers.MyReceiver;
@@ -55,6 +56,33 @@ public class MainActivity extends AppCompatActivity {
         final pagerAdapter adapter = new pagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            // This method will be invoked when a new page becomes selected.
+//            @Override
+//            public void onPageSelected(int position) {
+//                Toast.makeText(MainActivity.this,
+//                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+//                Log.d("called main",position+" position ");
+//            }
+//
+//            // This method will be invoked when the current page is scrolled
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                // Code goes here
+//                Toast.makeText(MainActivity.this,
+//                        "onPageScrolled: " + position, Toast.LENGTH_SHORT).show();
+//                Log.d("called main1",position+" position ");
+//            }
+//
+//            // Called when the scroll state changes:
+//            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//                // Code goes here
+//                Toast.makeText(MainActivity.this,
+//                        "onPageScrollStateChanged: " + state, Toast.LENGTH_SHORT).show();
+//            }
+//        });
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -73,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
         }

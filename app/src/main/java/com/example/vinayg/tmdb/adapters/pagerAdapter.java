@@ -19,7 +19,6 @@ public class pagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
-
     @Override
     public void restoreState(Parcelable state, ClassLoader loader) {
         super.restoreState(state, loader);
