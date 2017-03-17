@@ -62,6 +62,11 @@ public class TopRatedFragment extends Fragment{
                 startActivity(intent);
             }
 
+            @Override
+            public void onDoubleClick(View view, int position) {
+
+            }
+
         }));
         return view;
     }

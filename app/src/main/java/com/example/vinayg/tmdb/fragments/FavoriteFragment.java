@@ -3,11 +3,10 @@ package com.example.vinayg.tmdb.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,14 +33,7 @@ public class FavoriteFragment extends Fragment {
     ArrayList<Movie> favMoviesList;
     private MoviesDatabase db;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG,"called onCreate");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG,"called onCreateView");
         mV = inflater.inflate(R.layout.fragment_favorite, container, false); // Inflate the layout for this fragment
         mContext =  getActivity().getApplicationContext();
         db = MoviesDatabase.getInstance(getContext());
@@ -55,7 +47,7 @@ public class FavoriteFragment extends Fragment {
 
     private void setRecyclerView() {
         RecyclerView mRecyclerView = (RecyclerView) mV.findViewById(R.id.recyclerViewFavorites);
-        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext,2);// StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);//
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new FavoritesAdapter(mContext, favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
@@ -72,6 +64,11 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public void onLongClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onDoubleClick(View view, int position) {
 
             }
         }));
