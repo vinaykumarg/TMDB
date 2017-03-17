@@ -38,6 +38,7 @@ public class PopularScreenFragment extends Fragment {
     private String[] movie_filter;
     ArrayList<Movie> data;
     private RecyclerView mRecyclerView;
+    private PopularVIewAdapter gridAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,6 +80,12 @@ public class PopularScreenFragment extends Fragment {
 
         }));
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (gridAdapter!=null)
+        gridAdapter.notifyItemRangeChanged(0,data.size());
     }
     private class FetchMovieData extends AsyncTask<Void, Void, String> {
 
@@ -170,8 +177,9 @@ public class PopularScreenFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            PopularVIewAdapter gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
+            gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
             mRecyclerView.setAdapter(gridAdapter);
         }
     }
+
 }
