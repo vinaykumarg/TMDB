@@ -76,7 +76,8 @@
 
                 </LinearLayout>
                 <Button
-                    android:layout_gravity="right|end"
+                    android:id="@+id/likebtn"
+                    android:layout_margin="10dp"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/likegrey"

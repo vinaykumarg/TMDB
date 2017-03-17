@@ -9,11 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.handler.HttpHandler;
 import com.example.vinayg.tmdb.models.Movie;
 
@@ -31,6 +33,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     private ImageButton imageButton;
     Movie movie;
     private String movielink;
+    private Button likeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().setTitle("");
         imageButton = (ImageButton) findViewById(R.id.play);
         imageButton.setOnClickListener(this);
+        likeBtn = (Button) findViewById(R.id.likebtn);
+        likeBtn.setOnClickListener(this);
         movie = (Movie) getIntent().getSerializableExtra("movie");
         movielink = "https://www.themoviedb.org/movie/"+movie.getMovieId()+"-"+movie.getTitle();
         ImageView videoImage = (ImageView) findViewById(R.id.imageView1);
@@ -79,7 +84,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String shareBodyText = "Check it out. \n"+movielink;
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"movie details");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
                 startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
                 return true;
@@ -92,6 +97,19 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.play:
                 new fetchvideos().execute();
+                break;
+            case R.id.likebtn:
+                MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
+                if(!database.checkIfsaved(movie)) {
+                    likeBtn.setBackgroundResource(R.drawable.like);
+                    movie.setIsFavorite(1);
+                    database.insertMovie(movie);
+
+                } else {
+                    likeBtn.setBackgroundResource(R.drawable.likegrey);
+                    movie.setIsFavorite(0);
+                    database.deleteMovie(movie);
+                }
                 break;
         }
     }

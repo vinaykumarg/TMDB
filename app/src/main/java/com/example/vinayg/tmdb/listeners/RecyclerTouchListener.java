@@ -77,7 +77,11 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
     public boolean onDoubleTapEvent(MotionEvent e) {
         Log.d(" called double tap"," called double tap ");
         Toast.makeText(mContext,"ondoubleTap",Toast.LENGTH_SHORT);
-        clickListener.onDoubleClick(mChild,  mRecyclerView.getChildAdapterPosition(mChild));
+        mChild = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
+        if (mChild!= null && clickListener != null) {
+            clickListener.onDoubleClick(mChild,  mRecyclerView.getChildAdapterPosition(mChild));
+        }
+
         return true;
     }
 }

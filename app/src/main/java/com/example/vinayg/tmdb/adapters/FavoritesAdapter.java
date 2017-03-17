@@ -15,7 +15,6 @@ import com.example.vinayg.tmdb.models.Movie;
 
 import java.util.ArrayList;
 
-//import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
 
 /**
