@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +82,6 @@ public class PopularScreenFragment extends Fragment {
             data = new ArrayList<>();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
-            Log.d(TAG,jsonStr + " called ");
             if (jsonStr != null) {
 
 
