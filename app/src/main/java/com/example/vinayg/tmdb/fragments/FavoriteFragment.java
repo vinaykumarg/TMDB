@@ -84,11 +84,9 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void setMenuVisibility(boolean menuVisible) {
         super.setMenuVisibility(menuVisible);
-        Log.d(TAG,menuVisible+"");
         if (menuVisible) {
             favMoviesList.clear();
             favMoviesList.addAll(db.getUserFavoriteMovies());
-            Log.d(TAG,favMoviesList.size()+"");
             mAdapter.updateData(favMoviesList);
         }
     }
