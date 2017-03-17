@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     private Button likeBtn;
     private VideoView videoview;
     private ImageView videoImage;
+    private VideoView mVideoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
+        mVideoView =(VideoView) findViewById(R.id.VideoView);
+        mVideoView.setVisibility(View.INVISIBLE);
         imageButton = (ImageButton) findViewById(R.id.play);
         imageButton.setOnClickListener(this);
         likeBtn = (Button) findViewById(R.id.likebtn);
@@ -112,7 +116,19 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play:
-                new fetchvideos().execute();
+                //new fetchvideos().execute();
+                Log.d("called video playing","called video playing");
+                imageButton.setVisibility(View.INVISIBLE);
+                mVideoView.setVisibility(View.VISIBLE);
+                String path1="https://www.youtube.com/watch?v=qD-6d8Wo3do";
+                MediaController mc = new MediaController(this);
+                mc.setAnchorView(mVideoView);
+                mc.setMediaPlayer(mVideoView);
+                Uri uri=Uri.parse(path1);
+                mVideoView.setMediaController(mc);
+                mVideoView.setVideoURI(uri);
+                mVideoView.start();
+
                 break;
             case R.id.likebtn:
                 MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
