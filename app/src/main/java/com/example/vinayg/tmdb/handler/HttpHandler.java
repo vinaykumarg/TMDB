@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb.fragments;
+package com.example.vinayg.tmdb.handler;
 
 /**
  * Created by vinay.g.

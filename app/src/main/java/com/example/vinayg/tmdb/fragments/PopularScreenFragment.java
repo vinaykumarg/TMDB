@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
+import com.example.vinayg.tmdb.handler.HttpHandler;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
 import com.example.vinayg.tmdb.models.Movie;
@@ -83,7 +83,6 @@ public class PopularScreenFragment extends Fragment {
             data = new ArrayList<>();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
-            Log.d(TAG,jsonStr + " called ");
             if (jsonStr != null) {
 
 
@@ -126,7 +125,6 @@ public class PopularScreenFragment extends Fragment {
                         .appendQueryParameter(query,language)
                         .appendQueryParameter(page,"1")
                         .build();
-                //                Log.e("url", builtUri.toString());
                 return new URL(builtUri.toString());
             } catch (MalformedURLException e) {
                 e.printStackTrace();

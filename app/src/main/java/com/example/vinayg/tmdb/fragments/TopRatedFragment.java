@@ -15,7 +15,9 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.adapters.TopRatedAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
+import com.example.vinayg.tmdb.handler.HttpHandler;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
 import com.example.vinayg.tmdb.models.Movie;
@@ -98,7 +100,7 @@ public class TopRatedFragment extends Fragment {
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
-                        Log.d("movie",movieDetails.toString());
+//                        Log.d("movie",movieDetails.toString());
                         movie.setMovieId(movieDetails.getLong("id"));
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));

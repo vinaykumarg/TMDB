@@ -32,6 +32,7 @@ public class FavoriteFragment extends Fragment {
     Context mContext;
     View mV;
     ArrayList<Movie> favMoviesList;
+    private MoviesDatabase db;
 
 
     @Override
@@ -45,7 +46,7 @@ public class FavoriteFragment extends Fragment {
         Log.d(TAG,"called onCreateView");
         mV = inflater.inflate(R.layout.fragment_favorite, container, false); // Inflate the layout for this fragment
         mContext =  getActivity().getApplicationContext();
-        MoviesDatabase db = MoviesDatabase.getInstance(getContext());
+        db = MoviesDatabase.getInstance(getContext());
         favMoviesList =db.getUserFavoriteMovies();
         if(favMoviesList.size()==0){
             Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
@@ -79,42 +80,14 @@ public class FavoriteFragment extends Fragment {
 
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.d(TAG, "called onAttach");
-    }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "called onViewCreated");
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if (menuVisible) {
+            favMoviesList.clear();
+            favMoviesList.addAll(db.getUserFavoriteMovies());
+            mAdapter.updateData(favMoviesList);
+        }
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "called onDestroyView()");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "called onResume");
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG,"called onDestroy");
-    }
-
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-        Log.d(TAG,"called onAttachFragment ");
-    }
-
-
 }

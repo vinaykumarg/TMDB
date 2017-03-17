@@ -43,6 +43,13 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         notifyDataSetChanged();
     }
 
+    public void swap(ArrayList<Movie> favMoviesList) {
+        mData.clear();
+        mData.addAll(favMoviesList);
+        notifyItemRangeChanged(0,mData.size());
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
         public ImageView mImageView;
