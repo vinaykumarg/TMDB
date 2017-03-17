@@ -23,56 +23,7 @@ import java.util.ArrayList;
  */
 
 
-//public class TopRatedAdapter {
-//}
-//public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ListItemViewHolder> {
 
-
-
-//    private ArrayList<Model> items;
-//    private SparseBooleanArray selectedItems;
-//
-//    public TopRatedAdapter(ArrayList<Model> modelData) {
-//        if (modelData == null) {
-//            throw new IllegalArgumentException("modelData must not be null");
-//        }
-//        items = modelData;
-//        selectedItems = new SparseBooleanArray();
-//    }
-//
-//    @Override
-//    public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-//        View itemView = LayoutInflater.
-//                from(viewGroup.getContext()).
-//                inflate(R.layout.item_demo_01, viewGroup, false);
-//        return new ListItemViewHolder(itemView);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
-//        Model model = items.get(position);
-//        viewHolder.name.setText(String.valueOf(model.getName()));
-//        viewHolder.genre.setText(String.valueOf(model.getAge()));
-//        viewHolder.itemView.setActivated(selectedItems.get(position, false));
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return items.size();
-//    }
-//
-//    public final static class ListItemViewHolder extends RecyclerView.ViewHolder {
-//        TextView name;
-//        TextView genre;
-//
-//        public ListItemViewHolder(View itemView) {
-//            super(itemView);
-////            name = (TextView) itemView.findViewById(R.id.moviename_tv);
-////            genre = (TextView) itemView.findViewById(R.id.moviegenre_tv);
-//            name = (TextView) itemView.findViewById(R.id.tvMovieTitle);
-//            genre = (TextView) itemView.findViewById(R.id.tvMovieReleaseDate);
-//        }
-//    }
 public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHolder>{
 
     public static Context context;
