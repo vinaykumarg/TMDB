@@ -3,12 +3,10 @@ package com.example.vinayg.tmdb.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +33,7 @@ public class FavoriteFragment extends Fragment {
     ArrayList<Movie> favMoviesList;
     private MoviesDatabase db;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG,"called onCreate");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG,"called onCreateView");
         mV = inflater.inflate(R.layout.fragment_favorite, container, false); // Inflate the layout for this fragment
         mContext =  getActivity().getApplicationContext();
         db = MoviesDatabase.getInstance(getContext());

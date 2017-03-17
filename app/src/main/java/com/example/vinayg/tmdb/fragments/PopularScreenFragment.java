@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by vinay.g.
@@ -87,13 +88,25 @@ public class PopularScreenFragment extends Fragment {
             URL url = buildurl();
             HttpHandler sh = new HttpHandler();
             data = new ArrayList<>();
+            HashMap hm = new HashMap();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
+<<<<<<< HEAD
             if (jsonStr != null) {
 
+=======
+            String genreJson = sh.makeServiceCall(buildGenresUrl().toString());
+            if (jsonStr != null && genreJson != null) {
+>>>>>>> df834f4aff5686cefdc6024a27495547f62c3037
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
+                    JSONObject genreobject = new JSONObject(genreJson);
+                    JSONArray genres = genreobject.getJSONArray("genres");
                     JSONArray movies = jsonObj.getJSONArray("results");
+                    for (int j=0; j<genres.length();j++) {
+                        JSONObject object = genres.getJSONObject(j);
+                        hm.put(object.getInt("id"),object.get("name"));
+                    }
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
@@ -104,6 +117,12 @@ public class PopularScreenFragment extends Fragment {
                         movie.setAverageRating("Average rating : "+movieDetails.getString("vote_average"));
                         movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
+                        JSONArray genre_ids = movieDetails.getJSONArray("genre_ids");
+                        String genre = "";
+                        for (int j=0;j<genre_ids.length();j++) {
+                            genre = genre+hm.get(genre_ids.get(j))+",";
+                        }
+                        movie.setGenre(genre);
                         data.add(movie);
                     }
                 } catch (JSONException e) {
@@ -115,7 +134,23 @@ public class PopularScreenFragment extends Fragment {
 
             return "";
         }
-
+        private URL buildGenresUrl() {
+            try {
+                final String Movie_Base_URL = "https://api.themoviedb.org/3/genre/movie/list?";
+                final String APPID_PARAM = "api_key";
+                String query = "language";
+                String language = "en-US";
+                String page = "page";
+                Uri builtUri = Uri.parse(Movie_Base_URL).buildUpon()
+                        .appendQueryParameter(APPID_PARAM, getString(R.string.apikey))
+                        .appendQueryParameter(query,language)
+                        .build();
+                return new URL(builtUri.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
         private URL buildurl() {
             try {
                 final String Movie_Base_URL = "https://api.themoviedb.org/3/movie/";

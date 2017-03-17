@@ -15,8 +15,6 @@ import com.example.vinayg.tmdb.models.Movie;
 
 import java.util.ArrayList;
 
-import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
-
 //import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
 
@@ -91,7 +89,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
         holder.mTextView.setText(mData.get(position).getTitle());
         holder.mReleaseDateTV.setText(mData.get(position).getRelease_date());
+<<<<<<< HEAD
         Glide.with(context).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
+=======
+        Glide.with(mContext).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
+>>>>>>> df834f4aff5686cefdc6024a27495547f62c3037
                 .into(holder.mImageView);
     }
 
