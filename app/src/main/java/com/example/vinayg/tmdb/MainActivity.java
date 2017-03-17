@@ -4,16 +4,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.vinayg.tmdb.adapters.pagerAdapter;
+import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.reicievers.MyReceiver;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
+
             }
 
             @Override
@@ -66,9 +68,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                Log.d(" calle MAIN CTIVITY"," tab3 called");
 
             }
         });
+
+
+
+
         }
 
     public void registerReciever() {
@@ -86,14 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager
-                .getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -106,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         unregisterReciever();
         unregisterReceiver(broadcastReceiver);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
     }
 }

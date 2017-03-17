@@ -1,12 +1,12 @@
-package com.example.vinayg.tmdb.fragments;
+package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD:app/src/main/java/com/example/vinayg/tmdb/fragments/TopRatedAdapter.java
 import android.util.Log;
 import android.util.SparseBooleanArray;
+=======
+>>>>>>> abb634cc7d3d82db3806c80d4c22d0e02047a393:app/src/main/java/com/example/vinayg/tmdb/adapters/TopRatedAdapter.java
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +27,62 @@ import java.util.ArrayList;
  * Created by saili.k on 16-03-2017.
  */
 
+<<<<<<< HEAD:app/src/main/java/com/example/vinayg/tmdb/fragments/TopRatedAdapter.java
 
 public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder>{
+=======
+//public class TopRatedAdapter {
+//}
+//public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ListItemViewHolder> {
+
+
+
+//    private ArrayList<Model> items;
+//    private SparseBooleanArray selectedItems;
+//
+//    public TopRatedAdapter(ArrayList<Model> modelData) {
+//        if (modelData == null) {
+//            throw new IllegalArgumentException("modelData must not be null");
+//        }
+//        items = modelData;
+//        selectedItems = new SparseBooleanArray();
+//    }
+//
+//    @Override
+//    public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+//        View itemView = LayoutInflater.
+//                from(viewGroup.getContext()).
+//                inflate(R.layout.item_demo_01, viewGroup, false);
+//        return new ListItemViewHolder(itemView);
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
+//        Model model = items.get(position);
+//        viewHolder.name.setText(String.valueOf(model.getName()));
+//        viewHolder.genre.setText(String.valueOf(model.getAge()));
+//        viewHolder.itemView.setActivated(selectedItems.get(position, false));
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return items.size();
+//    }
+//
+//    public final static class ListItemViewHolder extends RecyclerView.ViewHolder {
+//        TextView name;
+//        TextView genre;
+//
+//        public ListItemViewHolder(View itemView) {
+//            super(itemView);
+////            name = (TextView) itemView.findViewById(R.id.moviename_tv);
+////            genre = (TextView) itemView.findViewById(R.id.moviegenre_tv);
+//            name = (TextView) itemView.findViewById(R.id.tvMovieTitle);
+//            genre = (TextView) itemView.findViewById(R.id.tvMovieReleaseDate);
+//        }
+//    }
+public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHolder>{
+>>>>>>> abb634cc7d3d82db3806c80d4c22d0e02047a393:app/src/main/java/com/example/vinayg/tmdb/adapters/TopRatedAdapter.java
     public static Context context;
     private int layoutResourceId;
     private ArrayList<Movie> data;
@@ -45,6 +99,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmd
     @Override
     public TopRatedAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_demo_01,parent,false);
+<<<<<<< HEAD:app/src/main/java/com/example/vinayg/tmdb/fragments/TopRatedAdapter.java
 
         return new com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder(v,data);
     }
@@ -52,6 +107,13 @@ public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmd
     @Override
     public void onBindViewHolder(com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder holder, int position) {
         Button likeBtn = holder.likeBtn ;
+=======
+        return new TopRatedAdapter.ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(TopRatedAdapter.ViewHolder holder, int position) {
+>>>>>>> abb634cc7d3d82db3806c80d4c22d0e02047a393:app/src/main/java/com/example/vinayg/tmdb/adapters/TopRatedAdapter.java
         ImageView image = holder.image;
         TextView imageTitle = holder.imageTitle;
         TextView release_date = holder.release_date;

@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
@@ -33,13 +32,7 @@ public class FavoriteFragment extends Fragment {
     Context mContext;
     View mV;
     ArrayList<Movie> favMoviesList;
-
-    // Initialize a new String array
-    String[] animals = new String[]{
-            "Aardvark", "Albatross", "Alligator", "Alpaca", "Ant", "Anteater", "Antelope", "Ape", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee"
-    };
-
-
+    private MoviesDatabase db;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,64 +44,46 @@ public class FavoriteFragment extends Fragment {
         Log.d(TAG,"called onCreateView");
         mV = inflater.inflate(R.layout.fragment_favorite, container, false); // Inflate the layout for this fragment
         mContext =  getActivity().getApplicationContext();
-        MoviesDatabase db = MoviesDatabase.getInstance(getContext());
+        db = MoviesDatabase.getInstance(getContext());
         favMoviesList =db.getUserFavoriteMovies();
         if(favMoviesList.size()==0){
             Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
         }
         setRecyclerView();
-
         return mV;
     }
 
     private void setRecyclerView() {
-
         RecyclerView mRecyclerView = (RecyclerView) mV.findViewById(R.id.recyclerViewFavorites);
-        RecyclerView.LayoutManager mLayoutManager =new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
+        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-
-        mRecyclerView.setAdapter(mAdapter);
-
-
-        mAdapter = new FavoritesAdapter(mContext,favMoviesList);
+        mAdapter = new FavoritesAdapter(mContext, favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
+
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
-                intent.putExtra("position",position);
+                Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("movie", favMoviesList.get(position));
                 startActivity(intent);
 
             }
+
             @Override
             public void onLongClick(View view, int position) {
 
             }
         }));
-
-
-
-
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.d(TAG, "called onAttach");
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "called onResume");
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG,"called onDestroy");
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if (menuVisible) {
+            favMoviesList.clear();
+            favMoviesList.addAll(db.getUserFavoriteMovies());
+            mAdapter.updateData(favMoviesList);
+        }
     }
 }

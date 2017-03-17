@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.vinayg.tmdb.models.Movie;
 
@@ -42,6 +41,7 @@ public class MoviesDatabase extends SQLiteOpenHelper {
                 MoviesTable.Cols.AVG_RATING+ " varchar(20) , "+
                 MoviesTable.Cols.CATEGORY+" varchar(20), " +
                 MoviesTable.Cols.OVERVIEW+" varchar(1000), "+
+                MoviesTable.Cols.RELEASE_DATE+" varchar(10), "+
                 MoviesTable.Cols.IS_FAVORITE + " integer default 0 )"
         );
     }
@@ -71,14 +71,17 @@ public class MoviesDatabase extends SQLiteOpenHelper {
 
     private ArrayList<Movie> getFavMoviesList(Cursor cursor) {
         ArrayList<Movie> favMovieList = new ArrayList<>();
-        if (cursor != null) { Log.d(TAG, "called cursor!null");
+        if (cursor != null) {
             if (cursor.moveToFirst()) {
-                do {Log.d(TAG, "called (cursor.moveToFirst())");
+                do {
                     Movie movie = new Movie();
                     movie.setMovieId(cursor.getInt(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_ID)));
                     movie.setTitle(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_NAME)));
                     movie.setImageUrl(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_IMAGE_URL)));
                     movie.setIsFavorite(cursor.getInt(cursor.getColumnIndex(MoviesTable.Cols.IS_FAVORITE)));
+                    movie.setBackgroundImage(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.BACKGROUND_IMG)));
+                    movie.setOverview(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.OVERVIEW)));
+                    movie.setRelease_date(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.RELEASE_DATE)));
                     favMovieList.add(movie);
                 } while (cursor.moveToNext());
             }
@@ -96,6 +99,7 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         values.put(MoviesTable.Cols.BACKGROUND_IMG,movie.getBackgroundImage());
         values.put(MoviesTable.Cols.OVERVIEW,movie.getOverview());
         values.put(MoviesTable.Cols.AVG_RATING,movie.getAverageRating());
+        values.put(MoviesTable.Cols.RELEASE_DATE,movie.getRelease_date());
         return values;
     }
     public Boolean checkIfsaved(Movie movie) {
