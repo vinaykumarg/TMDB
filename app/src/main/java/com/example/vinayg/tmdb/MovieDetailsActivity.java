@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -29,11 +30,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private ImageButton imageButton;
     Movie movie;
+    private String movielink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.mytoolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -42,6 +44,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         imageButton = (ImageButton) findViewById(R.id.play);
         imageButton.setOnClickListener(this);
         movie = (Movie) getIntent().getSerializableExtra("movie");
+        movielink = "https://www.themoviedb.org/movie/"+movie.getMovieId()+"-"+movie.getTitle();
         ImageView videoImage = (ImageView) findViewById(R.id.imageView1);
         ImageView movieBanner = (ImageView)findViewById(R.id.imageView2);
         TextView title = (TextView) findViewById(R.id.title);
@@ -71,6 +74,15 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.share:
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBodyText = "Check it out. \n"+movielink;
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+                startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -80,12 +92,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.play:
                 new fetchvideos().execute();
-//                HttpHandler httpHandler = new HttpHandler();
-//                String videos = httpHandler.makeServiceCall(buildurl().toString());
-//                Log.d("movie",videos);
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-//                startActivity(browserIntent);
-
                 break;
         }
     }
@@ -119,6 +125,13 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
     private URL buildurl() {
         try {
             final String Movie_Base_URL = "https://api.themoviedb.org/3/movie/"+movie.getMovieId()+"/";
