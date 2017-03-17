@@ -31,12 +31,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class TopRatedFragment extends Fragment {
+public class TopRatedFragment extends Fragment{
     private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
     ArrayList<Movie> data;
     private TopRatedAdapter gridAdapter;
     private RecyclerView mRecyclerView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,28 +46,11 @@ public class TopRatedFragment extends Fragment {
         movie_filter = new String[]{"popular","top_rated","favourite"};
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         new FetchMovieData().execute();
+
+
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
-                Movie movie = data.get(position);
-                MoviesDatabase database = MoviesDatabase.getInstance(getContext());
-                if(!database.checkIfsaved(movie)) {
-                    likeBtn.setBackgroundResource(R.drawable.like);
-                    movie.setIsFavorite(1);
-                    database.insertMovie(movie);
-                    ArrayList<Movie> list = database.getUserFavoriteMovies();
-
-
-
-                } else {
-                    likeBtn.setBackgroundResource(R.drawable.likegrey);
-                    movie.setIsFavorite(0);
-                    database.deleteMovie(movie);
-                }
-
-
-                //likeBtn.setBackgroundResource(R.drawable.like);
 
             }
 
@@ -81,6 +65,9 @@ public class TopRatedFragment extends Fragment {
         }));
         return view;
     }
+
+
+
     private class FetchMovieData extends AsyncTask<Void, Void, String> {
 
         @Override
@@ -105,7 +92,7 @@ public class TopRatedFragment extends Fragment {
                         movie.setTitle(movieDetails.getString("original_title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
                         movie.setOverview(movieDetails.getString("overview"));
-                        //movie.setAverageRating(movieDetails.getString("vote_average"));
+                        movie.setAverageRating(movieDetails.getString("vote_average"));
                         movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         data.add(movie);
