@@ -33,13 +33,12 @@ public class FavoriteFragment extends Fragment {
     Context mContext;
     View mV;
     ArrayList<Movie> favMoviesList;
-<<<<<<< HEAD
-=======
+
     // Initialize a new String array
     String[] animals = new String[]{
             "Aardvark", "Albatross", "Alligator", "Alpaca", "Ant", "Anteater", "Antelope", "Ape", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee", "Armadillo", "Donkey", "Baboon", "Badger", "Barracuda", "Bear", "Beaver", "Bee"
     };
->>>>>>> 9a82592a1a21e50c1b545c7f7d8479e9b66ba25e
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,11 +66,10 @@ public class FavoriteFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) mV.findViewById(R.id.recyclerViewFavorites);
         RecyclerView.LayoutManager mLayoutManager =new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-<<<<<<< HEAD
+
 
         mRecyclerView.setAdapter(mAdapter);
-=======
->>>>>>> fb5c32fee201a3300fbd85853cfb02107ee35cbf
+
 
         mAdapter = new FavoritesAdapter(mContext,favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
@@ -88,7 +86,7 @@ public class FavoriteFragment extends Fragment {
 
             }
         }));
-<<<<<<< HEAD
+
 
 
 
@@ -98,8 +96,7 @@ public class FavoriteFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.d(TAG, "called onAttach");
-=======
->>>>>>> fb5c32fee201a3300fbd85853cfb02107ee35cbf
+
     }
 
     @Override

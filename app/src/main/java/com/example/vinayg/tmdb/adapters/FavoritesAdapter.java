@@ -39,20 +39,18 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         mContext = context;
     }
 
-<<<<<<< HEAD
+
     public FavoritesAdapter(Context context) {
     }
 
 
 
 
-=======
-    public FavoritesAdapter(Context context){
-
-    }
 
 
->>>>>>> fb5c32fee201a3300fbd85853cfb02107ee35cbf
+
+
+
     public void updateData(ArrayList<Movie> DataSet){
         mData = DataSet;
         notifyDataSetChanged();
@@ -82,7 +80,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
 
         holder.mTextView.setText(mData.get(position).getTitle());
-        Glide.with(context).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
+        Glide.with(mContext).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
                 .into(holder.mImageView);
 
     }

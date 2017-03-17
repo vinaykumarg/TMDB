@@ -18,7 +18,7 @@ import com.example.vinayg.tmdb.R;
 
 
 import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
-//import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
+
 
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 
