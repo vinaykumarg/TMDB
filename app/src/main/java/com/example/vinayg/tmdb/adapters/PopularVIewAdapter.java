@@ -44,7 +44,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         Button likeBtn = holder.likeBtn ;
         ImageView image = holder.image;
         TextView imageTitle = holder.imageTitle;
-        TextView release_date = holder.release_date;
+        TextView genres = holder.release_date;
         Movie movie = data.get(position);
         MoviesDatabase database = MoviesDatabase.getInstance(context);
         Boolean isSaved = database.checkIfsaved(movie);
@@ -58,7 +58,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
                 .load(movie.getImageUrl())
                 .into(image);
         imageTitle.setText(movie.getTitle());
-        release_date.setText(movie.getRelease_date());
+        genres.setText(movie.getGenre());
     }
 
 
