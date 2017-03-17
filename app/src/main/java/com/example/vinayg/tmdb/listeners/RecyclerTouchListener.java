@@ -32,6 +32,8 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
                 }
             }
         });
+
+
     }
 
     @Override
@@ -52,4 +54,5 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
     }
+
 }

@@ -11,7 +11,7 @@
         android:weightSum="2"
         android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="310dp"
         android:orientation="vertical">
 
         <ImageView
@@ -23,10 +23,16 @@
         <TextView
             android:id="@+id/tv"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:textSize="15dp"
             android:layout_gravity="center"
             android:gravity="left"
             android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/releaseDateTV"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:textSize="10dp"
+            android:gravity="left"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>
