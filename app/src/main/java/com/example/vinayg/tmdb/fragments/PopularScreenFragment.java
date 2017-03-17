@@ -91,13 +91,10 @@ public class PopularScreenFragment extends Fragment {
             HashMap hm = new HashMap();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
-<<<<<<< HEAD
-            if (jsonStr != null) {
 
-=======
             String genreJson = sh.makeServiceCall(buildGenresUrl().toString());
             if (jsonStr != null && genreJson != null) {
->>>>>>> df834f4aff5686cefdc6024a27495547f62c3037
+
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     JSONObject genreobject = new JSONObject(genreJson);

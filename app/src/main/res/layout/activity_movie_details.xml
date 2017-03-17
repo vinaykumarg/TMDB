@@ -49,11 +49,13 @@
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/madmax"/>
 
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_vertical_margin"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -73,6 +75,12 @@
                         />
 
                 </LinearLayout>
+                <Button
+                    android:layout_gravity="right|end"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/likegrey"
+                    />
             </LinearLayout>
             <FrameLayout
                 android:layout_width="match_parent"

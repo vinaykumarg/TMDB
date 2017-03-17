@@ -64,7 +64,7 @@ public class TopRatedFragment extends Fragment{
 
             @Override
             public void onDoubleClick(View view, int position) {
-                
+
             }
 
         }));

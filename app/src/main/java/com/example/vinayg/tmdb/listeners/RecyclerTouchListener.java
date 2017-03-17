@@ -78,6 +78,6 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
         Log.d(" called double tap"," called double tap ");
         Toast.makeText(mContext,"ondoubleTap",Toast.LENGTH_SHORT);
         clickListener.onDoubleClick(mChild,  mRecyclerView.getChildAdapterPosition(mChild));
-        return false;
+        return true;
     }
 }
