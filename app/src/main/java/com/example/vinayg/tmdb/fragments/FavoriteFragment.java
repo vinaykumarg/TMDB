@@ -33,6 +33,7 @@ public class FavoriteFragment extends Fragment {
     View mV;
     ArrayList<Movie> favMoviesList;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,23 +51,23 @@ public class FavoriteFragment extends Fragment {
             Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
         }
         setRecyclerView();
-
         return mV;
     }
 
     private void setRecyclerView() {
-
         RecyclerView mRecyclerView = (RecyclerView) mV.findViewById(R.id.recyclerViewFavorites);
         RecyclerView.LayoutManager mLayoutManager =new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter = new FavoritesAdapter(mContext,favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
+
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
                 intent.putExtra("position",position);
+                intent.putExtra("movie",favMoviesList.get(position));
                 startActivity(intent);
 
             }
@@ -85,6 +86,18 @@ public class FavoriteFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "called onViewCreated");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "called onDestroyView()");
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "called onResume");
@@ -96,4 +109,12 @@ public class FavoriteFragment extends Fragment {
         super.onDestroy();
         Log.d(TAG,"called onDestroy");
     }
+
+    @Override
+    public void onAttachFragment(Fragment childFragment) {
+        super.onAttachFragment(childFragment);
+        Log.d(TAG,"called onAttachFragment ");
+    }
+
+
 }

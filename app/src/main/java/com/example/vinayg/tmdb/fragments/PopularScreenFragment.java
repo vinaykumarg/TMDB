@@ -61,8 +61,6 @@ public class PopularScreenFragment extends Fragment {
                     movie.setIsFavorite(0);
                     database.deleteMovie(movie);
                 }
-
-
             }
 
             @Override
