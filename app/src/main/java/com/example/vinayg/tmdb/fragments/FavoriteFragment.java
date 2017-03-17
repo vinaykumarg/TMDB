@@ -31,8 +31,6 @@ public class FavoriteFragment extends Fragment {
     View mV;
     ArrayList<Movie> favMoviesList;
     private MoviesDatabase db;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mV = inflater.inflate(R.layout.fragment_favorite, container, false); // Inflate the layout for this fragment
@@ -48,29 +46,27 @@ public class FavoriteFragment extends Fragment {
 
     private void setRecyclerView() {
         RecyclerView mRecyclerView = (RecyclerView) mV.findViewById(R.id.recyclerViewFavorites);
-        RecyclerView.LayoutManager mLayoutManager =new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
+        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);// GridLayoutManager(mContext,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter = new FavoritesAdapter(mContext,favMoviesList);
+        mAdapter = new FavoritesAdapter(mContext, favMoviesList);
         mRecyclerView.setAdapter(mAdapter);        // Set the adapter for RecyclerView
 
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
-                intent.putExtra("position",position);
-                intent.putExtra("movie",favMoviesList.get(position));
+                Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("movie", favMoviesList.get(position));
                 startActivity(intent);
 
             }
+
             @Override
             public void onLongClick(View view, int position) {
 
             }
         }));
-
     }
-
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {

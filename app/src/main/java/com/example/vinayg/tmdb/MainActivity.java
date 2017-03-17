@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.vinayg.tmdb.adapters.pagerAdapter;
+import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.reicievers.MyReceiver;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         unregisterReciever();
         unregisterReceiver(broadcastReceiver);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
     }
 }

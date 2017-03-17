@@ -8,24 +8,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:weightSum="2"
         android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="310dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageViewFav"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="270dp"
             android:src="@mipmap/ic_launcher"/>
         <TextView
             android:id="@+id/tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:layout_height="20dp"
+            android:textSize="15dp"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:gravity="left"
             android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/releaseDateTV"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:textSize="10dp"
+            android:gravity="left"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

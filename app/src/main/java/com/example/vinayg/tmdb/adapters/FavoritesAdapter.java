@@ -15,8 +15,6 @@ import com.example.vinayg.tmdb.models.Movie;
 
 import java.util.ArrayList;
 
-import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
-
 //import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
 
@@ -38,8 +36,23 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         mContext = context;
     }
 
+
+
+    public FavoritesAdapter(Context context) {
+    }
+
+
+
+
+
+
+
+
+
+
     public void updateData(ArrayList<Movie> DataSet){
         mData = DataSet;
+        notifyItemRangeChanged(0,mData.size());
         notifyDataSetChanged();
     }
 
@@ -51,12 +64,14 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView mTextView;
+        public TextView mTextView,mReleaseDateTV;
         public ImageView mImageView;
         public LinearLayout mLinearLayout;
+
         public ViewHolder(View v){
             super(v);
             mTextView = (TextView) v.findViewById(R.id.tv);
+            mReleaseDateTV =(TextView) v.findViewById(R.id.releaseDateTV);
             mImageView =(ImageView) v.findViewById(R.id.imageViewFav);
             mLinearLayout = (LinearLayout) v.findViewById(R.id.ll);
         }
@@ -74,7 +89,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
 
         holder.mTextView.setText(mData.get(position).getTitle());
-        Glide.with(context).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
+        holder.mReleaseDateTV.setText(mData.get(position).getRelease_date());
+        Glide.with(mContext).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
                 .into(holder.mImageView);
 
     }
