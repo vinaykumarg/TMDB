@@ -89,16 +89,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
     @Override
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
-
         holder.mTextView.setText(mData.get(position).getTitle());
-<<<<<<< HEAD
         holder.mReleaseDateTV.setText(mData.get(position).getRelease_date());
         Glide.with(context).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
-=======
-        Glide.with(mContext).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
->>>>>>> 5c9aa913ee8b64d6b37601147f7776e9a01980cd
                 .into(holder.mImageView);
-
     }
 
     @Override

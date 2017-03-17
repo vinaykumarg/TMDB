@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
@@ -71,6 +72,11 @@ public class PopularScreenFragment extends Fragment {
                 startActivity(intent);
             }
 
+            @Override
+            public void onDoubleClick(View view, int position) {
+                Toast.makeText(getContext(),"DOBLE TAP",Toast.LENGTH_SHORT).show();
+            }
+
         }));
         return view;
     }
@@ -84,7 +90,6 @@ public class PopularScreenFragment extends Fragment {
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
             if (jsonStr != null) {
-
 
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
@@ -101,7 +106,6 @@ public class PopularScreenFragment extends Fragment {
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         data.add(movie);
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

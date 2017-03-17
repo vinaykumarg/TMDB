@@ -1,9 +1,4 @@
 package com.example.vinayg.tmdb.handler;
-
-/**
- * Created by vinay.g.
- */
-
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -21,7 +16,6 @@ import java.net.URL;
  */
 
 public class HttpHandler {
-
     private static final String TAG = HttpHandler.class.getSimpleName();
 
     public HttpHandler() {
