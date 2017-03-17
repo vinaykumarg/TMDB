@@ -16,6 +16,7 @@ import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
+import com.example.vinayg.tmdb.handler.HttpHandler;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
 import com.example.vinayg.tmdb.models.Movie;
@@ -124,7 +125,6 @@ public class PopularScreenFragment extends Fragment {
                         .appendQueryParameter(query,language)
                         .appendQueryParameter(page,"1")
                         .build();
-                //                Log.e("url", builtUri.toString());
                 return new URL(builtUri.toString());
             } catch (MalformedURLException e) {
                 e.printStackTrace();

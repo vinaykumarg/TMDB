@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.vinayg.tmdb.models.Movie;
 
@@ -71,9 +70,9 @@ public class MoviesDatabase extends SQLiteOpenHelper {
 
     private ArrayList<Movie> getFavMoviesList(Cursor cursor) {
         ArrayList<Movie> favMovieList = new ArrayList<>();
-        if (cursor != null) { Log.d(TAG, "called cursor!null");
+        if (cursor != null) {
             if (cursor.moveToFirst()) {
-                do {Log.d(TAG, "called (cursor.moveToFirst())");
+                do {
                     Movie movie = new Movie();
                     movie.setMovieId(cursor.getInt(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_ID)));
                     movie.setTitle(cursor.getString(cursor.getColumnIndex(MoviesTable.Cols.MOVIE_NAME)));

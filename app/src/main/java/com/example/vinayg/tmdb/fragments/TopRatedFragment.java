@@ -15,7 +15,9 @@ import android.widget.Button;
 
 import com.example.vinayg.tmdb.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.adapters.TopRatedAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
+import com.example.vinayg.tmdb.handler.HttpHandler;
 import com.example.vinayg.tmdb.listeners.ClickListener;
 import com.example.vinayg.tmdb.listeners.RecyclerTouchListener;
 import com.example.vinayg.tmdb.models.Movie;

@@ -1,11 +1,7 @@
-package com.example.vinayg.tmdb.fragments;
+package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +70,7 @@ import java.util.ArrayList;
 //            genre = (TextView) itemView.findViewById(R.id.tvMovieReleaseDate);
 //        }
 //    }
-public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder>{
+public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHolder>{
     public static Context context;
     private int layoutResourceId;
     private ArrayList<Movie> data;
@@ -89,11 +85,11 @@ public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmd
     @Override
     public TopRatedAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_demo_01,parent,false);
-        return new com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder(v);
+        return new TopRatedAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(TopRatedAdapter.ViewHolder holder, int position) {
         ImageView image = holder.image;
         TextView imageTitle = holder.imageTitle;
         TextView release_date = holder.release_date;
