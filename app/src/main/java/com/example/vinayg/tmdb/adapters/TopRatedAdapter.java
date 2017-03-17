@@ -2,11 +2,6 @@ package com.example.vinayg.tmdb.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-<<<<<<< HEAD:app/src/main/java/com/example/vinayg/tmdb/fragments/TopRatedAdapter.java
-import android.util.Log;
-import android.util.SparseBooleanArray;
-=======
->>>>>>> abb634cc7d3d82db3806c80d4c22d0e02047a393:app/src/main/java/com/example/vinayg/tmdb/adapters/TopRatedAdapter.java
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +22,7 @@ import java.util.ArrayList;
  * Created by saili.k on 16-03-2017.
  */
 
-<<<<<<< HEAD:app/src/main/java/com/example/vinayg/tmdb/fragments/TopRatedAdapter.java
 
-public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder>{
-=======
 //public class TopRatedAdapter {
 //}
 //public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ListItemViewHolder> {
@@ -82,7 +74,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<com.example.vinayg.tmd
 //        }
 //    }
 public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHolder>{
->>>>>>> abb634cc7d3d82db3806c80d4c22d0e02047a393:app/src/main/java/com/example/vinayg/tmdb/adapters/TopRatedAdapter.java
+
     public static Context context;
     private int layoutResourceId;
     private ArrayList<Movie> data;
@@ -99,21 +91,14 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
     @Override
     public TopRatedAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_demo_01,parent,false);
-<<<<<<< HEAD:app/src/main/java/com/example/vinayg/tmdb/fragments/TopRatedAdapter.java
 
-        return new com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder(v,data);
-    }
 
-    @Override
-    public void onBindViewHolder(com.example.vinayg.tmdb.fragments.TopRatedAdapter.ViewHolder holder, int position) {
-        Button likeBtn = holder.likeBtn ;
-=======
-        return new TopRatedAdapter.ViewHolder(v);
+        return new ViewHolder(v,data);
     }
 
     @Override
     public void onBindViewHolder(TopRatedAdapter.ViewHolder holder, int position) {
->>>>>>> abb634cc7d3d82db3806c80d4c22d0e02047a393:app/src/main/java/com/example/vinayg/tmdb/adapters/TopRatedAdapter.java
+        Button likeBtn = holder.likeBtn ;
         ImageView image = holder.image;
         TextView imageTitle = holder.imageTitle;
         TextView release_date = holder.release_date;
