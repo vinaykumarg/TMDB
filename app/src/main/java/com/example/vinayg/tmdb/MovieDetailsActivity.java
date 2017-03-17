@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
@@ -34,6 +36,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     Movie movie;
     private String movielink;
     private Button likeBtn;
+    private VideoView videoview;
+    private ImageView videoImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,20 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         likeBtn = (Button) findViewById(R.id.likebtn);
         likeBtn.setOnClickListener(this);
         movie = (Movie) getIntent().getSerializableExtra("movie");
+        MoviesDatabase database = MoviesDatabase.getInstance(context);
+        Boolean isSaved = database.checkIfsaved(movie);
+        if (isSaved) {
+            likeBtn.setBackgroundResource(R.drawable.like);
+        } else {
+            likeBtn.setBackgroundResource(R.drawable.likegrey);
+        }
         movielink = "https://www.themoviedb.org/movie/"+movie.getMovieId()+"-"+movie.getTitle();
-        ImageView videoImage = (ImageView) findViewById(R.id.imageView1);
+        videoview = (VideoView) findViewById(R.id.VideoView);
+        MediaController mc = new MediaController(this);
+        mc.setAnchorView(videoview);
+        mc.setMediaPlayer(videoview);
+        videoview.setMediaController(mc);
+        videoImage = (ImageView) findViewById(R.id.imageView1);
         ImageView movieBanner = (ImageView)findViewById(R.id.imageView2);
         TextView title = (TextView) findViewById(R.id.title);
         TextView releaseDate = (TextView) findViewById(R.id.releasedate);
@@ -138,8 +154,13 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Uri uri = Uri.parse(s);
+//            imageButton.setVisibility(View.GONE);
+//            videoImage.setVisibility(View.GONE);
+//            videoview.setVideoURI(uri);
+//            videoview.start();
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(s));
+            intent.setData(uri);
             startActivity(intent);
         }
     }

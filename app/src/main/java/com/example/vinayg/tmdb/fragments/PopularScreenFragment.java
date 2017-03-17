@@ -49,15 +49,15 @@ public class PopularScreenFragment extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
                 Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
                 intent.putExtra("position",position);
                 intent.putExtra("movie",data.get(position));
                 startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
             }
 
             @Override

@@ -57,8 +57,7 @@
                     android:padding="2dp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/medium_font_size"
-                    android:textStyle="bold"
-                    android:text="@string/_50" />
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvVotesCount"
