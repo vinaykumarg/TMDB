@@ -115,6 +115,21 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.play:
                 new fetchvideos().execute();
+<<<<<<< HEAD
+                Log.d("called video playing","called video playing");
+                imageButton.setVisibility(View.INVISIBLE);
+                mVideoView.setVisibility(View.VISIBLE);
+                String path1="https://www.youtube.com/watch?v=qD-6d8Wo3do";
+                MediaController mc = new MediaController(this);
+                mc.setAnchorView(mVideoView);
+                mc.setMediaPlayer(mVideoView);
+                Uri uri=Uri.parse(path1);
+                mVideoView.setMediaController(mc);
+                mVideoView.setVideoURI(uri);
+                mVideoView.start();
+
+=======
+>>>>>>> 019aeb3926e9c059bd7dc851a26a5581234e64b4
                 break;
             case R.id.likebtn:
                 MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
