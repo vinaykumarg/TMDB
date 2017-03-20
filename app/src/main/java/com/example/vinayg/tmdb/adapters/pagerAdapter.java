@@ -6,14 +6,13 @@ package com.example.vinayg.tmdb.adapters;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.vinayg.tmdb.fragments.FavoriteFragment;
 import com.example.vinayg.tmdb.fragments.PopularScreenFragment;
 import com.example.vinayg.tmdb.fragments.TopRatedFragment;
 
-public class pagerAdapter extends FragmentStatePagerAdapter {
+public class pagerAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;
     public pagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);

@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,9 +36,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     Movie movie;
     private String movielink;
     private Button likeBtn;
-    VideoView mVideoView;
-    ImageView videoImage;
-    ImageView movieBanner;
+    private VideoView videoview;
+    private ImageView videoImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +45,31 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_movie_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.mytoolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        mVideoView =(VideoView) findViewById(R.id.videoView);
-        mVideoView.setVisibility(View.INVISIBLE);
         imageButton = (ImageButton) findViewById(R.id.play);
         imageButton.setOnClickListener(this);
         likeBtn = (Button) findViewById(R.id.likebtn);
         likeBtn.setOnClickListener(this);
         movie = (Movie) getIntent().getSerializableExtra("movie");
+        MoviesDatabase database = MoviesDatabase.getInstance(context);
+        Boolean isSaved = database.checkIfsaved(movie);
+        if (isSaved) {
+            likeBtn.setBackgroundResource(R.drawable.like);
+        } else {
+            likeBtn.setBackgroundResource(R.drawable.likegrey);
+        }
         movielink = "https://www.themoviedb.org/movie/"+movie.getMovieId()+"-"+movie.getTitle();
+        videoview = (VideoView) findViewById(R.id.VideoView);
+        MediaController mc = new MediaController(this);
+        mc.setAnchorView(videoview);
+        mc.setMediaPlayer(videoview);
+        videoview.setMediaController(mc);
         videoImage = (ImageView) findViewById(R.id.imageView1);
-         movieBanner = (ImageView)findViewById(R.id.imageView2);
+        ImageView movieBanner = (ImageView)findViewById(R.id.imageView2);
         TextView title = (TextView) findViewById(R.id.title);
         TextView releaseDate = (TextView) findViewById(R.id.releasedate);
         TextView rating = (TextView) findViewById(R.id.rating);
@@ -105,6 +115,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.play:
                 new fetchvideos().execute();
+<<<<<<< HEAD
                 Log.d("called video playing","called video playing");
                 imageButton.setVisibility(View.INVISIBLE);
                 mVideoView.setVisibility(View.VISIBLE);
@@ -117,6 +128,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                 mVideoView.setVideoURI(uri);
                 mVideoView.start();
 
+=======
+>>>>>>> 019aeb3926e9c059bd7dc851a26a5581234e64b4
                 break;
             case R.id.likebtn:
                 MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
@@ -124,7 +137,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                     likeBtn.setBackgroundResource(R.drawable.like);
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
-
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
                     movie.setIsFavorite(0);
@@ -158,9 +170,10 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-//            Intent intent = new Intent(Intent.ACTION_VIEW);
-//            intent.setData(Uri.parse(s));
-//            startActivity(intent);
+            Uri uri = Uri.parse(s);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(uri);
+            startActivity(intent);
         }
     }
     @Override

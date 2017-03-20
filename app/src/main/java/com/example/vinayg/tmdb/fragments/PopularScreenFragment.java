@@ -38,6 +38,7 @@ public class PopularScreenFragment extends Fragment {
     private String[] movie_filter;
     ArrayList<Movie> data;
     private RecyclerView mRecyclerView;
+    private PopularVIewAdapter gridAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,15 +50,15 @@ public class PopularScreenFragment extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
                 Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
                 intent.putExtra("position",position);
                 intent.putExtra("movie",data.get(position));
                 startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
             }
 
             @Override
@@ -79,6 +80,12 @@ public class PopularScreenFragment extends Fragment {
 
         }));
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (gridAdapter!=null)
+        gridAdapter.notifyItemRangeChanged(0,data.size());
     }
     private class FetchMovieData extends AsyncTask<Void, Void, String> {
 
@@ -170,8 +177,9 @@ public class PopularScreenFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            PopularVIewAdapter gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
+            gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
             mRecyclerView.setAdapter(gridAdapter);
         }
     }
+
 }
