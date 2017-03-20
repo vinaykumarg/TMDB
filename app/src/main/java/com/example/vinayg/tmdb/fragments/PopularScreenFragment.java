@@ -80,6 +80,19 @@ public class PopularScreenFragment extends Fragment {
 
             }
 
+            @Override
+            public void onLongClick(View view, int position) {
+                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra("position",position);
+                intent.putExtra("movie",data.get(position));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onDoubleClick(View view, int position) {
+
+            }
+
         }));
         return view;
     }

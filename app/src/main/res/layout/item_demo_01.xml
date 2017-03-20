@@ -15,14 +15,14 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="200dp"
-            android:layout_height="300dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imgBanner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:src="@drawable/turquoise" />
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp" />
 
             <!--<TextView-->
                 <!--android:id="@+id/tvLanguage"-->
@@ -102,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:maxLines="1"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/half_black"
                     android:textSize="@dimen/small_font_size"
