@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +38,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     private Button likeBtn;
     private VideoView videoview;
     private ImageView videoImage;
-    private VideoView mVideoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +45,11 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_movie_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.mytoolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        mVideoView =(VideoView) findViewById(R.id.VideoView);
-        mVideoView.setVisibility(View.INVISIBLE);
         imageButton = (ImageButton) findViewById(R.id.play);
         imageButton.setOnClickListener(this);
         likeBtn = (Button) findViewById(R.id.likebtn);
@@ -116,19 +114,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play:
-                //new fetchvideos().execute();
-                Log.d("called video playing","called video playing");
-                imageButton.setVisibility(View.INVISIBLE);
-                mVideoView.setVisibility(View.VISIBLE);
-                String path1="https://www.youtube.com/watch?v=qD-6d8Wo3do";
-                MediaController mc = new MediaController(this);
-                mc.setAnchorView(mVideoView);
-                mc.setMediaPlayer(mVideoView);
-                Uri uri=Uri.parse(path1);
-                mVideoView.setMediaController(mc);
-                mVideoView.setVideoURI(uri);
-                mVideoView.start();
-
+                new fetchvideos().execute();
                 break;
             case R.id.likebtn:
                 MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
@@ -136,7 +122,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                     likeBtn.setBackgroundResource(R.drawable.like);
                     movie.setIsFavorite(1);
                     database.insertMovie(movie);
-
                 } else {
                     likeBtn.setBackgroundResource(R.drawable.likegrey);
                     movie.setIsFavorite(0);
@@ -171,10 +156,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Uri uri = Uri.parse(s);
-//            imageButton.setVisibility(View.GONE);
-//            videoImage.setVisibility(View.GONE);
-//            videoview.setVideoURI(uri);
-//            videoview.start();
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(uri);
             startActivity(intent);
