@@ -144,7 +144,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                     JSONObject jsonObject1 = jsonArray.getJSONObject(jsonArray.length()-1);
                     String key = jsonObject1.getString("key");
                     String link = "https://www.youtube.com/watch?v="+key;
-                    return link;
+                    return key;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -153,11 +153,14 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Uri uri = Uri.parse(s);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(uri);
+        protected void onPostExecute(String key) {
+            super.onPostExecute(key);
+//            Uri uri = Uri.parse(s);
+//            Intent intent = new Intent(Intent.ACTION_VIEW);
+//            intent.setData(uri);
+//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(),YouTubeActivity.class);
+            intent.putExtra("key",key);
             startActivity(intent);
         }
     }
