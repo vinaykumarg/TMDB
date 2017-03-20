@@ -32,6 +32,12 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
     private Button likeBtn;
     Movie movie;
 
+    public TopRatedAdapter(Context context) {
+        this.layoutResourceId = layoutResourceId;
+        this.context = context;
+        this.data = data;
+    }
+
     public TopRatedAdapter(Context context, int layoutResourceId, ArrayList<Movie> data) {
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -49,11 +55,31 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(TopRatedAdapter.ViewHolder holder, int position) {
+//        Button likeBtn = holder.likeBtn ;
+//        ImageView image = holder.image;
+//        TextView imageTitle = holder.imageTitle;
+//        TextView release_date = holder.release_date;
+//        movie = data.get(position);
+//        MoviesDatabase database = MoviesDatabase.getInstance(context);
+//        Boolean isSaved = database.checkIfsaved(movie);
+//        if (isSaved) {
+//            likeBtn.setBackgroundResource(R.drawable.like);
+//        } else {
+//            likeBtn.setBackgroundResource(R.drawable.likegrey);
+//        }
+//        Glide
+//                .with(context)
+//                .load(movie.getImageUrl())
+//                .crossFade()
+//                .fitCenter()
+//                .into(image);
+//        imageTitle.setText(movie.getTitle());
+//        release_date.setText(movie.getRelease_date());
         Button likeBtn = holder.likeBtn ;
         ImageView image = holder.image;
         TextView imageTitle = holder.imageTitle;
-        TextView release_date = holder.release_date;
-        movie = data.get(position);
+        TextView genres = holder.release_date;
+        Movie movie = data.get(position);
         MoviesDatabase database = MoviesDatabase.getInstance(context);
         Boolean isSaved = database.checkIfsaved(movie);
         if (isSaved) {
@@ -64,11 +90,9 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
         Glide
                 .with(context)
                 .load(movie.getImageUrl())
-                .crossFade()
-                .fitCenter()
                 .into(image);
         imageTitle.setText(movie.getTitle());
-        release_date.setText(movie.getRelease_date());
+        genres.setText(movie.getGenre());
     }
 
 
