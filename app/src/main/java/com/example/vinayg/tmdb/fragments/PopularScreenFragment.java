@@ -50,19 +50,6 @@ public class PopularScreenFragment extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
-                intent.putExtra("position",position);
-                intent.putExtra("movie",data.get(position));
-                startActivity(intent);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onDoubleClick(View view, int position) {
                 Button likeBtn = (Button) view.findViewById(R.id.btnLike) ;
                 Movie movie = data.get(position);
                 MoviesDatabase database = MoviesDatabase.getInstance(getContext());
@@ -76,6 +63,19 @@ public class PopularScreenFragment extends Fragment {
                     movie.setIsFavorite(0);
                     database.deleteMovie(movie);
                 }
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Intent intent =  new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra("position",position);
+                intent.putExtra("movie",data.get(position));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onDoubleClick(View view, int position) {
+
             }
 
         }));

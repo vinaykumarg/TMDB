@@ -2,7 +2,6 @@ package com.example.vinayg.tmdb;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -26,8 +25,10 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         if (!wasRestored) {
             String key = getIntent().getStringExtra("key");
+//            getIntent().getStringArrayListExtra();
             if (key!=null) {
-                Log.d("key",key);
+//                Log.d("key",key);
+//                youTubePlayer.cueVideos();
                 youTubePlayer.cueVideo(key); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
             }
         }

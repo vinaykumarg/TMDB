@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
@@ -115,21 +116,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.play:
                 new fetchvideos().execute();
-<<<<<<< HEAD
-                Log.d("called video playing","called video playing");
-                imageButton.setVisibility(View.INVISIBLE);
-                mVideoView.setVisibility(View.VISIBLE);
-                String path1="https://www.youtube.com/watch?v=qD-6d8Wo3do";
-                MediaController mc = new MediaController(this);
-                mc.setAnchorView(mVideoView);
-                mc.setMediaPlayer(mVideoView);
-                Uri uri=Uri.parse(path1);
-                mVideoView.setMediaController(mc);
-                mVideoView.setVideoURI(uri);
-                mVideoView.start();
-
-=======
->>>>>>> 019aeb3926e9c059bd7dc851a26a5581234e64b4
                 break;
             case R.id.likebtn:
                 MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
@@ -145,37 +131,42 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
-    private class fetchvideos extends AsyncTask<Void, Void, String>{
+    private class fetchvideos extends AsyncTask<Void, Void, ArrayList<String>> {
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected ArrayList<String> doInBackground(Void... params) {
             URL url = buildurl();
             HttpHandler sh = new HttpHandler();
+            ArrayList<String> key = new ArrayList<>();
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
             if (jsonStr!=null) {
                 try {
                     JSONObject jsonObject = new JSONObject(jsonStr);
                     JSONArray jsonArray = jsonObject.getJSONArray("results");
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(jsonArray.length()-1);
-                    String key = jsonObject1.getString("key");
-                    String link = "https://www.youtube.com/watch?v="+key;
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        key.add(jsonObject1.getString("key"));
+                    }
+//                    String link = "https://www.youtube.com/watch?v="+key;
+//                    Log.d("link",jsonObject1.toString());
                     return key;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
+
             return null;
         }
 
         @Override
-        protected void onPostExecute(String key) {
-            super.onPostExecute(key);
+        protected void onPostExecute(ArrayList<String> keys) {
+            super.onPostExecute(keys);
 //            Uri uri = Uri.parse(s);
 //            Intent intent = new Intent(Intent.ACTION_VIEW);
 //            intent.setData(uri);
 //            startActivity(intent);
             Intent intent = new Intent(getApplicationContext(),YouTubeActivity.class);
-            intent.putExtra("key",key);
+            intent.putStringArrayListExtra("key",keys);
             startActivity(intent);
         }
     }
