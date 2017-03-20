@@ -104,7 +104,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play:
-                //new fetchvideos().execute();
+                new fetchvideos().execute();
                 Log.d("called video playing","called video playing");
                 imageButton.setVisibility(View.INVISIBLE);
                 mVideoView.setVisibility(View.VISIBLE);
