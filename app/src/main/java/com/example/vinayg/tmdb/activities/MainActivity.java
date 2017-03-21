@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.pagerAdapter;
-import com.example.vinayg.tmdb.reicievers.MyReceiver;
+import com.example.vinayg.tmdb.receivers.MyReceiver;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView networkStatus;

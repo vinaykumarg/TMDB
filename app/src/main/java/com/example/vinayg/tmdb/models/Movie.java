@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class Movie implements Serializable {
-    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview,category,genre;
+    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview,category,genre,votes;
     private long movieId;
     private Boolean isSaved = false;
     private int isFavorite;
@@ -110,5 +110,13 @@ public class Movie implements Serializable {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getVotes() {
+        return votes;
+    }
+
+    public void setVotes(String votes) {
+        this.votes = votes;
     }
 }

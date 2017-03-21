@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb.reicievers;
+package com.example.vinayg.tmdb.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

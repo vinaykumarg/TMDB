@@ -41,6 +41,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Button likeBtn = holder.likeBtn ;
         ImageView image = holder.image;
+        TextView tvVotesCount = holder.votesCount;
         TextView imageTitle = holder.imageTitle;
         TextView genres = holder.release_date;
         Movie movie = data.get(position);
@@ -55,8 +56,10 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
                 .with(context)
                 .load(movie.getImageUrl())
                 .into(image);
+
         imageTitle.setText(movie.getTitle());
         genres.setText(movie.getGenre());
+        tvVotesCount.setText(movie.getVotes());
     }
 
 
@@ -71,13 +74,14 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         final ImageView image;
         final TextView release_date;
         final Button likeBtn;
-
+        final TextView votesCount;
         ViewHolder(View itemView) {
             super(itemView);
             imageTitle = (TextView) itemView.findViewById(R.id.tvMovieTitle);
             image = (ImageView) itemView.findViewById(R.id.imgBanner);
             release_date = (TextView) itemView.findViewById(R.id.tvMovieReleaseDate);
             likeBtn = (Button) itemView.findViewById(R.id.btnLike);
+            votesCount = (TextView) itemView.findViewById(R.id.tvVotesCount);
         }
     }
 }

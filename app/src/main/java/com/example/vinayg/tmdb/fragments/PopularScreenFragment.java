@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -123,6 +124,8 @@ public class PopularScreenFragment extends Fragment {
                         movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         JSONArray genre_ids = movieDetails.getJSONArray("genre_ids");
+                        Log.d("movie",movieDetails.toString());
+                        movie.setVotes(movieDetails.getString("vote_count"));
                         String genre = "";
                         for (int j=0;j<genre_ids.length();j++) {
                             genre = genre+hm.get(genre_ids.get(j))+",";
