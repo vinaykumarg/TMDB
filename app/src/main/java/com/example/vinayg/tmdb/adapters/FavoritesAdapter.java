@@ -40,15 +40,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     public FavoritesAdapter(Context context) {
     }
 
-
-
-
-
-
-
-
-
-
     public void updateData(ArrayList<Movie> DataSet){
         mData = DataSet;
         notifyItemRangeChanged(0,mData.size());
@@ -63,7 +54,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView mTextView,mReleaseDateTV;
+        public TextView mTextView,mReleaseDateTV,mGenreTV;
         public ImageView mImageView;
         public LinearLayout mLinearLayout;
 
@@ -73,6 +64,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             mReleaseDateTV =(TextView) v.findViewById(R.id.releaseDateTV);
             mImageView =(ImageView) v.findViewById(R.id.imageViewFav);
             mLinearLayout = (LinearLayout) v.findViewById(R.id.ll);
+            mGenreTV = (TextView) v.findViewById(R.id.genreTV);
         }
     }
 
@@ -88,6 +80,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
         holder.mTextView.setText(mData.get(position).getTitle());
         holder.mReleaseDateTV.setText(mData.get(position).getRelease_date());
+        holder.mGenreTV.setText(mData.get(position).getGenre());
 
         Glide.with(mContext).load(mData.get(position).getImageUrl()).crossFade().fitCenter()
                 .into(holder.mImageView);

@@ -82,7 +82,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                 .with(getApplicationContext())
                 .load(movie.getImageUrl())
                 .into(movieBanner);
-
         Glide
                 .with(getApplicationContext())
                 .load(movie.getBackgroundImage())
@@ -134,7 +133,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         protected ArrayList<String> doInBackground(Void... params) {
             URL url = buildUrl();
             HttpHandler sh = new HttpHandler();
-            ArrayList<String> key = new ArrayList<>();
+            ArrayList<String> keys = new ArrayList<>();
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
             if (jsonStr!=null) {
                 try {
@@ -142,11 +141,9 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                     JSONArray jsonArray = jsonObject.getJSONArray("results");
                     for (int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        key.add(jsonObject1.getString("key"));
+                        keys.add(jsonObject1.getString("key"));
                     }
-//                    String link = "https://www.youtube.com/watch?v="+key;
-//                    Log.d("link",jsonObject1.toString());
-                    return key;
+                    return keys;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

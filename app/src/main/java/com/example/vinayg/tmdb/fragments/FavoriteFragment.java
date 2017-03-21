@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,7 @@ public class FavoriteFragment extends Fragment {
         mContext =  getActivity().getApplicationContext();
         db = MoviesDatabase.getInstance(getContext());
         favMoviesList =db.getUserFavoriteMovies();
-        if(favMoviesList.size()==0){
-            Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
-        }
+
         setRecyclerView();
         return mV;
     }
@@ -74,14 +73,34 @@ public class FavoriteFragment extends Fragment {
     }
 
     @Override
-    public void setMenuVisibility(boolean menuVisible) {
-        super.setMenuVisibility(menuVisible);
-        if (menuVisible) {
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.d("called ", "  visible + "+isVisibleToUser+"");
+        if (isVisibleToUser) {
             if(favMoviesList!=null) {
                 favMoviesList.clear();
                 favMoviesList.addAll(db.getUserFavoriteMovies());
+                if(favMoviesList.size()==0){
+                    Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
+                }
                 mAdapter.updateData(favMoviesList);
             }
         }
+
+    }
+
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+//        if (menuVisible) {
+//            if(favMoviesList!=null) {
+//                favMoviesList.clear();
+//                favMoviesList.addAll(db.getUserFavoriteMovies());
+//                if(favMoviesList.size()==0){
+//                    Toast.makeText(getContext(),"No favourites added", Toast.LENGTH_SHORT).show();
+//                }
+//                mAdapter.updateData(favMoviesList);
+//            }
+//        }
     }
 }

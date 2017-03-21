@@ -63,6 +63,7 @@ public class PopularScreenFragment extends Fragment {
                     movie.setIsFavorite(0);
                     database.deleteMovie(movie);
                 }
+
             }
 
             @Override
@@ -71,6 +72,7 @@ public class PopularScreenFragment extends Fragment {
                 intent.putExtra("position",position);
                 intent.putExtra("movie",data.get(position));
                 startActivity(intent);
+
             }
 
             @Override
