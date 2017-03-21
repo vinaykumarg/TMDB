@@ -36,7 +36,7 @@ import java.util.HashMap;
  */
 public class PopularScreenFragment extends Fragment {
     private String[] movie_filter;
-    ArrayList<Movie> data;
+    private ArrayList<Movie> data;
     private RecyclerView mRecyclerView;
     private PopularVIewAdapter gridAdapter;
 
@@ -94,7 +94,7 @@ public class PopularScreenFragment extends Fragment {
 
         @Override
         protected String doInBackground(Integer... params) {
-            URL url = buildurl();
+            URL url = buildUrl();
             HttpHandler sh = new HttpHandler();
             data = new ArrayList<>();
             HashMap<Integer, String> hm = new HashMap<>();
@@ -106,8 +106,8 @@ public class PopularScreenFragment extends Fragment {
 
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
-                    JSONObject genreobject = new JSONObject(genreJson);
-                    JSONArray genres = genreobject.getJSONArray("genres");
+                    JSONObject genreObject = new JSONObject(genreJson);
+                    JSONArray genres = genreObject.getJSONArray("genres");
                     JSONArray movies = jsonObj.getJSONArray("results");
                     for (int j=0; j<genres.length();j++) {
                         JSONObject object = genres.getJSONObject(j);
@@ -145,11 +145,11 @@ public class PopularScreenFragment extends Fragment {
         private URL buildGenresUrl() {
             try {
                 final String Movie_Base_URL = "https://api.themoviedb.org/3/genre/movie/list?";
-                final String APPID_PARAM = "api_key";
+                final String APP_ID_PARAM = "api_key";
                 String query = "language";
                 String language = "en-US";
                 Uri builtUri = Uri.parse(Movie_Base_URL).buildUpon()
-                        .appendQueryParameter(APPID_PARAM, getString(R.string.apikey))
+                        .appendQueryParameter(APP_ID_PARAM, getString(R.string.apikey))
                         .appendQueryParameter(query,language)
                         .build();
                 return new URL(builtUri.toString());
@@ -158,16 +158,16 @@ public class PopularScreenFragment extends Fragment {
                 return null;
             }
         }
-        private URL buildurl() {
+        private URL buildUrl() {
             try {
                 final String Movie_Base_URL = "https://api.themoviedb.org/3/movie/";
-                final String APPID_PARAM = "api_key";
+                final String APP_ID_PARAM = "api_key";
                 String query = "language";
                 String language = "en-US";
                 String page = "page";
                 Uri builtUri = Uri.parse(Movie_Base_URL).buildUpon()
                         .appendPath(movie_filter[0])
-                        .appendQueryParameter(APPID_PARAM, getString(R.string.apikey))
+                        .appendQueryParameter(APP_ID_PARAM, getString(R.string.apikey))
                         .appendQueryParameter(query,language)
                         .appendQueryParameter(page,"1")
                         .build();
