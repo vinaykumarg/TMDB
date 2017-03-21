@@ -87,7 +87,6 @@ public class PopularScreenFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (gridAdapter!=null) {
-            //gridAdapter.notifyItemRangeChanged(0,data.size());
             gridAdapter.notifyDataSetChanged();
         }
     }
@@ -98,10 +97,11 @@ public class PopularScreenFragment extends Fragment {
             URL url = buildurl();
             HttpHandler sh = new HttpHandler();
             data = new ArrayList<>();
-            HashMap hm = new HashMap();
+            HashMap<Integer, String> hm = new HashMap<>();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
-            String genreJson = sh.makeServiceCall(buildGenresUrl().toString());
+            URL genresUrl = buildGenresUrl();
+            String genreJson = sh.makeServiceCall(genresUrl != null ? genresUrl.toString() : null);
             if (jsonStr != null && genreJson != null) {
 
                 try {
@@ -111,7 +111,7 @@ public class PopularScreenFragment extends Fragment {
                     JSONArray movies = jsonObj.getJSONArray("results");
                     for (int j=0; j<genres.length();j++) {
                         JSONObject object = genres.getJSONObject(j);
-                        hm.put(object.getInt("id"),object.get("name"));
+                        hm.put(object.getInt("id"),object.getString("name"));
                     }
                     for (int i=0;i<movies.length();i++){
                         JSONObject movieDetails = movies.getJSONObject(i);
@@ -128,7 +128,7 @@ public class PopularScreenFragment extends Fragment {
                         movie.setVotes(movieDetails.getString("vote_count"));
                         String genre = "";
                         for (int j=0;j<genre_ids.length();j++) {
-                            genre = genre+hm.get(genre_ids.get(j))+",";
+                            genre = String.format("%s%s,", genre, hm.get(genre_ids.getInt(j)));
                         }
                         movie.setGenre(genre);
                         data.add(movie);
