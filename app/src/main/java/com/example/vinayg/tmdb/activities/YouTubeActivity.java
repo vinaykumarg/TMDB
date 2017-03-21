@@ -28,10 +28,7 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         if (!wasRestored) {
             ArrayList<String> key = getIntent().getStringArrayListExtra("key");
-//            getIntent().getStringArrayListExtra();
             if (key!=null) {
-//                Log.d("key",key);
-//                youTubePlayer.cueVideos();
                 youTubePlayer.cueVideos(key); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
             }
         }

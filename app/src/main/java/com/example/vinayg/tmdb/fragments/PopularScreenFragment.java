@@ -34,7 +34,6 @@ import java.util.HashMap;
  * Created by vinay.g.
  */
 public class PopularScreenFragment extends Fragment {
-    private  static String TAG = PopularScreenFragment.class.getSimpleName();
     private String[] movie_filter;
     ArrayList<Movie> data;
     private RecyclerView mRecyclerView;
@@ -91,17 +90,16 @@ public class PopularScreenFragment extends Fragment {
             gridAdapter.notifyDataSetChanged();
         }
     }
-    private class FetchMovieData extends AsyncTask<Void, Void, String> {
+    private class FetchMovieData extends AsyncTask<Integer, Void, String> {
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(Integer... params) {
             URL url = buildurl();
             HttpHandler sh = new HttpHandler();
             data = new ArrayList<>();
             HashMap hm = new HashMap();
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
-
             String genreJson = sh.makeServiceCall(buildGenresUrl().toString());
             if (jsonStr != null && genreJson != null) {
 
@@ -147,7 +145,6 @@ public class PopularScreenFragment extends Fragment {
                 final String APPID_PARAM = "api_key";
                 String query = "language";
                 String language = "en-US";
-                String page = "page";
                 Uri builtUri = Uri.parse(Movie_Base_URL).buildUpon()
                         .appendQueryParameter(APPID_PARAM, getString(R.string.apikey))
                         .appendQueryParameter(query,language)
@@ -177,6 +174,7 @@ public class PopularScreenFragment extends Fragment {
                 return null;
             }
         }
+
 
         @Override
         protected void onPostExecute(String s) {
