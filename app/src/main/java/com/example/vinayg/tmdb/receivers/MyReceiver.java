@@ -12,7 +12,7 @@ public class MyReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-            // Check internet connection and accrding to state change the
+            // Check internet connection and according to state change the
             // text of activity by calling method
             if (isNetworkAvailable(context)) {
                 Intent i = new Intent("INTERNET_LOST");

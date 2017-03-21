@@ -7,9 +7,15 @@ import java.io.Serializable;
  */
 
 public class Movie implements Serializable {
-    private String title,ImageUrl,Release_date,BackgroundImage,AverageRating,Overview,category,genre,votes;
+    private String title;
+    private String ImageUrl;
+    private String Release_date;
+    private String BackgroundImage;
+    private String AverageRating;
+    private String Overview;
+    private String genre;
+    private String votes;
     private long movieId;
-    private Boolean isSaved = false;
     private int isFavorite;
     private int id;
 
@@ -20,17 +26,6 @@ public class Movie implements Serializable {
     public void setIsFavorite(int isFavorite) {
         this.isFavorite = isFavorite;
     }
-
-
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
 
 
     public String getRelease_date() {
@@ -87,14 +82,6 @@ public class Movie implements Serializable {
 
     public void setMovieId(long movieId) {
         this.movieId = movieId;
-    }
-
-    public Boolean isSaved() {
-        return isSaved;
-    }
-
-    public void setSaved(Boolean saved) {
-        isSaved = saved;
     }
 
     public int getId() {
