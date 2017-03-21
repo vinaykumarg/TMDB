@@ -22,12 +22,10 @@ import java.util.ArrayList;
  */
 
 public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.ViewHolder>{
-    public static Context context;
-    private int layoutResourceId;
+    public Context context;
     private ArrayList<Movie> data;
 
-    public PopularVIewAdapter(Context context, int layoutResourceId, ArrayList<Movie> data) {
-        this.layoutResourceId = layoutResourceId;
+    public PopularVIewAdapter(Context context, ArrayList<Movie> data) {
         this.context = context;
         this.data = data;
     }
@@ -68,13 +66,13 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder  {
-        public final TextView imageTitle;
-        public final ImageView image;
-        public final TextView release_date;
-        public final Button likeBtn;
+    static class ViewHolder extends RecyclerView.ViewHolder  {
+        final TextView imageTitle;
+        final ImageView image;
+        final TextView release_date;
+        final Button likeBtn;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             imageTitle = (TextView) itemView.findViewById(R.id.tvMovieTitle);
             image = (ImageView) itemView.findViewById(R.id.imgBanner);

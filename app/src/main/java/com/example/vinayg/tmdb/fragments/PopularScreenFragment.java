@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.vinayg.tmdb.MovieDetailsActivity;
+import com.example.vinayg.tmdb.activities.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
@@ -84,8 +84,10 @@ public class PopularScreenFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (gridAdapter!=null)
-        gridAdapter.notifyItemRangeChanged(0,data.size());
+        if (gridAdapter!=null) {
+            //gridAdapter.notifyItemRangeChanged(0,data.size());
+            gridAdapter.notifyDataSetChanged();
+        }
     }
     private class FetchMovieData extends AsyncTask<Void, Void, String> {
 
@@ -177,7 +179,7 @@ public class PopularScreenFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            gridAdapter = new PopularVIewAdapter(getContext(), R.layout.movie_card_layout, data);
+            gridAdapter = new PopularVIewAdapter(getContext(), data);
             mRecyclerView.setAdapter(gridAdapter);
         }
     }

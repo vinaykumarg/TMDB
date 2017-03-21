@@ -12,10 +12,9 @@ import java.util.ArrayList;
 
 import static com.example.vinayg.tmdb.database.MovieDBSchema.MoviesTable;
 /**
- * Created by manasa.a on 15-03-2017.
+ * Created by manasa.a.
  */
 public class MoviesDatabase extends SQLiteOpenHelper {
-    private static final String TAG = MoviesDatabase.class.getSimpleName();
     private SQLiteDatabase db;
     private static MoviesDatabase instance;
     private static final int VERSION = 1;
@@ -109,8 +108,10 @@ public class MoviesDatabase extends SQLiteOpenHelper {
         Cursor cursor = db.query(MoviesTable.NAME,new String[]{MoviesTable.Cols.IS_FAVORITE} ,
                 selection, selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
+            cursor.close();
             return true;
         }
+        cursor.close();
         return false;
     }
 }

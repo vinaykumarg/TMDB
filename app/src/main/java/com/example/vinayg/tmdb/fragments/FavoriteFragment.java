@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.vinayg.tmdb.MovieDetailsActivity;
+import com.example.vinayg.tmdb.activities.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;

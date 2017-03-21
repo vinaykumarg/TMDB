@@ -1,6 +1,6 @@
 package com.example.vinayg.tmdb.database;
 /**
- * Created by manasa.a on 15-03-2017.
+ * Created by manasa.a.
  */
 public class MovieDBSchema {
     public static final class MoviesTable{

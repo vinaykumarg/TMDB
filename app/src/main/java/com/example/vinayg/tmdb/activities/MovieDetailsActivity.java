@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb;
+package com.example.vinayg.tmdb.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.handler.HttpHandler;
 import com.example.vinayg.tmdb.models.Movie;
@@ -29,16 +30,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static com.example.vinayg.tmdb.adapters.PopularVIewAdapter.context;
 
 public class MovieDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton imageButton;
-    Movie movie;
-    private String movielink;
+    private Movie movie;
+    private String mMovieLink;
     private Button likeBtn;
-    private VideoView videoview;
-    private ImageView videoImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +48,25 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        imageButton = (ImageButton) findViewById(R.id.play);
+        ImageButton imageButton = (ImageButton) findViewById(R.id.play);
         imageButton.setOnClickListener(this);
         likeBtn = (Button) findViewById(R.id.likebtn);
         likeBtn.setOnClickListener(this);
         movie = (Movie) getIntent().getSerializableExtra("movie");
-        MoviesDatabase database = MoviesDatabase.getInstance(context);
+        MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
         Boolean isSaved = database.checkIfsaved(movie);
         if (isSaved) {
             likeBtn.setBackgroundResource(R.drawable.like);
         } else {
             likeBtn.setBackgroundResource(R.drawable.likegrey);
         }
-        movielink = "https://www.themoviedb.org/movie/"+movie.getMovieId()+"-"+movie.getTitle();
-        videoview = (VideoView) findViewById(R.id.VideoView);
+        mMovieLink = "https://www.themoviedb.org/movie/"+movie.getMovieId()+"-"+movie.getTitle();
+        VideoView videoview = (VideoView) findViewById(R.id.VideoView);
         MediaController mc = new MediaController(this);
         mc.setAnchorView(videoview);
         mc.setMediaPlayer(videoview);
         videoview.setMediaController(mc);
-        videoImage = (ImageView) findViewById(R.id.imageView1);
+        ImageView videoImage = (ImageView) findViewById(R.id.imageView1);
         ImageView movieBanner = (ImageView)findViewById(R.id.imageView2);
         TextView title = (TextView) findViewById(R.id.title);
         TextView releaseDate = (TextView) findViewById(R.id.releasedate);
@@ -82,12 +79,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         rating.setText(movie.getAverageRating());
 
         Glide
-                .with(context)
+                .with(getApplicationContext())
                 .load(movie.getImageUrl())
                 .into(movieBanner);
 
         Glide
-                .with(context)
+                .with(getApplicationContext())
                 .load(movie.getBackgroundImage())
                 .into(videoImage);
     }
@@ -102,7 +99,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
 
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBodyText = "Check it out. \n"+movielink;
+                String shareBodyText = "Check it out. \n"+ mMovieLink;
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"movie details");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
                 startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
@@ -115,7 +112,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play:
-                new fetchvideos().execute();
+                new fetchVideos().execute();
                 break;
             case R.id.likebtn:
                 MoviesDatabase database = MoviesDatabase.getInstance(getApplicationContext());
@@ -131,11 +128,11 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
-    private class fetchvideos extends AsyncTask<Void, Void, ArrayList<String>> {
+    private class fetchVideos extends AsyncTask<Void, Void, ArrayList<String>> {
 
         @Override
         protected ArrayList<String> doInBackground(Void... params) {
-            URL url = buildurl();
+            URL url = buildUrl();
             HttpHandler sh = new HttpHandler();
             ArrayList<String> key = new ArrayList<>();
             String jsonStr = sh.makeServiceCall(url != null ? url.toString() : null);
@@ -161,10 +158,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
         @Override
         protected void onPostExecute(ArrayList<String> keys) {
             super.onPostExecute(keys);
-//            Uri uri = Uri.parse(s);
-//            Intent intent = new Intent(Intent.ACTION_VIEW);
-//            intent.setData(uri);
-//            startActivity(intent);
             Intent intent = new Intent(getApplicationContext(),YouTubeActivity.class);
             intent.putStringArrayListExtra("key",keys);
             startActivity(intent);
@@ -177,18 +170,20 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-    private URL buildurl() {
+    private URL buildUrl() {
         try {
             final String Movie_Base_URL = "https://api.themoviedb.org/3/movie/"+movie.getMovieId()+"/";
-            final String APPID_PARAM = "api_key";
+            final String APP_ID_PARAM = "api_key";
             final String VIDEO_PARAM = "videos";
             String query = "language";
             String language = "en-US";
             String page = "page";
+            String pageNumber = "1";
             Uri builtUri = Uri.parse(Movie_Base_URL).buildUpon()
                     .appendPath(VIDEO_PARAM)
-                    .appendQueryParameter(APPID_PARAM, getString(R.string.apikey))
+                    .appendQueryParameter(APP_ID_PARAM, getString(R.string.apikey))
                     .appendQueryParameter(query,language)
+                    .appendQueryParameter(page,pageNumber)
                     .build();
             return new URL(builtUri.toString());
         } catch (MalformedURLException e) {

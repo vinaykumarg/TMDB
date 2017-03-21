@@ -1,4 +1,4 @@
-package com.example.vinayg.tmdb;
+package com.example.vinayg.tmdb.activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,20 +8,18 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.vinayg.tmdb.R;
 import com.example.vinayg.tmdb.adapters.pagerAdapter;
-import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.reicievers.MyReceiver;
 
 public class MainActivity extends AppCompatActivity {
-    private String[] movie_filter;
     private ImageView networkStatus;
     private ViewPager viewPager;
     private final BroadcastReceiver mMyReceiver = new MyReceiver();
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             // internet lost alert dialog method call from here...
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        movie_filter = new String[]{"popular","top_rated","favourite"};
+        String[] movie_filter = new String[]{"popular", "top_rated", "favourite"};
         tabLayout.addTab(tabLayout.newTab().setText(movie_filter[0].toUpperCase()));
         tabLayout.addTab(tabLayout.newTab().setText(movie_filter[1].toUpperCase()));
         tabLayout.addTab(tabLayout.newTab().setText(movie_filter[2].toUpperCase()));
@@ -68,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                Log.d(" calle MAIN CTIVITY"," tab3 called");
 
             }
         });
@@ -78,39 +75,29 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    public void registerReciever() {
+    private void registerReceiver() {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(mMyReceiver, filter);
     }
-    public void unregisterReciever() {
-        try {
-            unregisterReceiver(mMyReceiver);
-        } catch (Exception e) {
-
-        }
-
+    private void unregisterReceiver() {
+        unregisterReceiver(mMyReceiver);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        registerReciever();
+        registerReceiver();
         registerReceiver(broadcastReceiver, new IntentFilter("INTERNET_LOST"));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        unregisterReciever();
+        unregisterReceiver();
         unregisterReceiver(broadcastReceiver);
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
 }

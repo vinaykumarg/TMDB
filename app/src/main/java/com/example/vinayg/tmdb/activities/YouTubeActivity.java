@@ -1,13 +1,16 @@
-package com.example.vinayg.tmdb;
+package com.example.vinayg.tmdb.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.vinayg.tmdb.R;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+
+import java.util.ArrayList;
 
 public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
     private static final int RECOVERY_REQUEST = 1;
@@ -24,12 +27,12 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         if (!wasRestored) {
-            String key = getIntent().getStringExtra("key");
+            ArrayList<String> key = getIntent().getStringArrayListExtra("key");
 //            getIntent().getStringArrayListExtra();
             if (key!=null) {
 //                Log.d("key",key);
 //                youTubePlayer.cueVideos();
-                youTubePlayer.cueVideo(key); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
+                youTubePlayer.cueVideos(key); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
             }
         }
     }
