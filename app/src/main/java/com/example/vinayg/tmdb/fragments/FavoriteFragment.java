@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.vinayg.tmdb.activities.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.activities.MovieDetailsActivity;
 import com.example.vinayg.tmdb.adapters.FavoritesAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.listeners.ClickListener;
@@ -75,7 +74,6 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        Log.d("called ", "  visible + "+isVisibleToUser+"");
         if (isVisibleToUser) {
             if(favMoviesList!=null) {
                 favMoviesList.clear();
