@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
     private String title;
+    private String language;
     private String ImageUrl;
     private String Release_date;
     private String BackgroundImage;
@@ -105,5 +106,13 @@ public class Movie implements Serializable {
 
     public void setVotes(String votes) {
         this.votes = votes;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

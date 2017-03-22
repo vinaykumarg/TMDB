@@ -44,6 +44,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         TextView tvVotesCount = holder.votesCount;
         TextView imageTitle = holder.imageTitle;
         TextView genres = holder.release_date;
+        TextView tvLanguage = holder.tvLanguage;
         Movie movie = data.get(position);
         MoviesDatabase database = MoviesDatabase.getInstance(context);
         Boolean isSaved = database.checkIfsaved(movie);
@@ -52,6 +53,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         } else {
             likeBtn.setBackgroundResource(R.drawable.likegrey);
         }
+        tvLanguage.setText(movie.getLanguage().toUpperCase());
         Glide
                 .with(context)
                 .load(movie.getImageUrl())
@@ -75,6 +77,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
         final TextView release_date;
         final Button likeBtn;
         final TextView votesCount;
+        final TextView tvLanguage;
         ViewHolder(View itemView) {
             super(itemView);
             imageTitle = (TextView) itemView.findViewById(R.id.tvMovieTitle);
@@ -82,6 +85,7 @@ public class PopularVIewAdapter extends RecyclerView.Adapter<PopularVIewAdapter.
             release_date = (TextView) itemView.findViewById(R.id.tvMovieReleaseDate);
             likeBtn = (Button) itemView.findViewById(R.id.btnLike);
             votesCount = (TextView) itemView.findViewById(R.id.tvVotesCount);
+            tvLanguage = (TextView) itemView.findViewById(R.id.tvLanguage);
         }
     }
 }

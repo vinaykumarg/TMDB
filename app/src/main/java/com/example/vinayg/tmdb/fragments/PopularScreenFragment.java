@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.vinayg.tmdb.activities.MovieDetailsActivity;
 import com.example.vinayg.tmdb.R;
+import com.example.vinayg.tmdb.activities.MovieDetailsActivity;
 import com.example.vinayg.tmdb.adapters.PopularVIewAdapter;
 import com.example.vinayg.tmdb.database.MoviesDatabase;
 import com.example.vinayg.tmdb.handler.HttpHandler;
@@ -123,6 +122,7 @@ public class PopularScreenFragment extends Fragment {
                         movie.setAverageRating("Average rating : "+movieDetails.getString("vote_average"));
                         movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
+                        movie.setLanguage(movieDetails.getString("original_language"));
                         JSONArray genre_ids = movieDetails.getJSONArray("genre_ids");
 //                        Log.d("movie",movieDetails.toString());
                         movie.setVotes(movieDetails.getString("vote_count"));
