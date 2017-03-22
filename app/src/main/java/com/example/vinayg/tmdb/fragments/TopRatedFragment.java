@@ -134,7 +134,7 @@ public class TopRatedFragment extends Fragment{
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
                         movie.setMovieId(movieDetails.getLong("id"));
-                        movie.setTitle(movieDetails.getString("original_title"));
+                        movie.setTitle(movieDetails.getString("title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
                         movie.setOverview(movieDetails.getString("overview"));
                         movie.setAverageRating("Average rating : "+movieDetails.getString("vote_average"));

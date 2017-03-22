@@ -117,14 +117,14 @@ public class PopularScreenFragment extends Fragment {
                         JSONObject movieDetails = movies.getJSONObject(i);
                         Movie movie = new Movie();
                         movie.setMovieId(movieDetails.getLong("id"));
-                        movie.setTitle(movieDetails.getString("original_title"));
+                        movie.setTitle(movieDetails.getString("title"));
                         movie.setImageUrl("https://image.tmdb.org/t/p/w500"+movieDetails.getString("poster_path"));
                         movie.setOverview(movieDetails.getString("overview"));
                         movie.setAverageRating("Average rating : "+movieDetails.getString("vote_average"));
                         movie.setBackgroundImage("https://image.tmdb.org/t/p/w500"+movieDetails.getString("backdrop_path"));
                         movie.setRelease_date(movieDetails.getString("release_date"));
                         JSONArray genre_ids = movieDetails.getJSONArray("genre_ids");
-                        Log.d("movie",movieDetails.toString());
+//                        Log.d("movie",movieDetails.toString());
                         movie.setVotes(movieDetails.getString("vote_count"));
                         String genre = "";
                         for (int j=0;j<genre_ids.length();j++) {
